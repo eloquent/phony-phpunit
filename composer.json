@@ -1,0 +1,36 @@
+{
+    "name": "eloquent/phony-phpunit",
+    "description": "Phony for PHPUnit.",
+    "keywords": ["mock", "mocking", "stub", "stubbing", "spy", "dummy", "double", "test", "fake"],
+    "homepage": "http://eloquent-software.com/phony/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Erin Millard",
+            "email": "ezzatron@gmail.com",
+            "homepage": "http://ezzatron.com/"
+        }
+    ],
+    "require": {
+        "php": ">=5.3",
+        "eloquent/phony": "dev-remove-integrations"
+    },
+    "require-dev": {
+        "ext-pdo": "*",
+        "errors/exceptions": "^0.1",
+        "phpunit/phpunit": "^4|^5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Eloquent\\Phony\\Phpunit\\": "src"
+        },
+        "files": [
+            "src/functions.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Eloquent\\Phony\\Phpunit\\": "test/src"
+        }
+    }
+}

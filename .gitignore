@@ -1,0 +1,6 @@
+/.composer/
+/coverage/
+/test/bin/php-cs-fixer
+/vendor/
+/composer.lock
+/README.html
