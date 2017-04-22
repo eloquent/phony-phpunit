@@ -21,7 +21,9 @@
 
 - Available as [Composer] package [eloquent/phony-phpunit].
 - Read the [documentation].
+- Visit the [main Phony repository].
 
 [composer]: http://getcomposer.org/
 [documentation]: http://eloquent-software.com/phony/latest/
 [eloquent/phony-phpunit]: https://packagist.org/packages/eloquent/phony-phpunit
+[main phony repository]: https://github.com/eloquent/phony
