@@ -13,12 +13,11 @@
     ],
     "require": {
         "php": ">=5.3",
-        "eloquent/phony": "dev-remove-integrations"
+        "eloquent/phony": "dev-remove-integrations",
+        "phpunit/phpunit": "^4|^5"
     },
     "require-dev": {
-        "ext-pdo": "*",
-        "errors/exceptions": "^0.1",
-        "phpunit/phpunit": "^4|^5"
+        "errors/exceptions": "^0.1"
     },
     "autoload": {
         "psr-4": {
