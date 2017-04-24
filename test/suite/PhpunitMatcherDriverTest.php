@@ -11,10 +11,10 @@
 
 namespace Eloquent\Phony\Phpunit;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
-class PhpunitMatcherDriverTest extends PHPUnit_Framework_TestCase
+class PhpunitMatcherDriverTest extends TestCase
 {
     protected function setUp()
     {
@@ -30,7 +30,7 @@ class PhpunitMatcherDriverTest extends PHPUnit_Framework_TestCase
 
     public function testMatcherClassNames()
     {
-        $this->assertSame(array('PHPUnit_Framework_Constraint'), $this->subject->matcherClassNames());
+        $this->assertSame(array('PHPUnit\Framework\Constraint\Constraint'), $this->subject->matcherClassNames());
     }
 
     public function testWrapMatcher()

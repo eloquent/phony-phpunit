@@ -40,7 +40,7 @@ class PhpunitMatcherDriver implements MatcherDriver
      */
     public function isAvailable()
     {
-        return class_exists('PHPUnit_Framework_Constraint');
+        return class_exists('PHPUnit\Framework\Constraint\Constraint');
     }
 
     /**
@@ -50,7 +50,7 @@ class PhpunitMatcherDriver implements MatcherDriver
      */
     public function matcherClassNames()
     {
-        return array('PHPUnit_Framework_Constraint');
+        return array('PHPUnit\Framework\Constraint\Constraint');
     }
 
     /**

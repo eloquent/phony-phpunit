@@ -11,9 +11,9 @@
 
 namespace Eloquent\Phony\Phpunit;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class PhpunitMatcherTest extends PHPUnit_Framework_TestCase
+class PhpunitMatcherTest extends TestCase
 {
     protected function setUp()
     {

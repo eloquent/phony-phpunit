@@ -17,7 +17,7 @@ use Eloquent\Phony\Event\Event;
 use Eloquent\Phony\Event\EventCollection;
 use Eloquent\Phony\Event\EventSequence;
 use Exception;
-use PHPUnit_Framework_Assert;
+use PHPUnit\Framework\Assert;
 
 /**
  * An assertion recorder for PHPUnit.
@@ -58,10 +58,7 @@ class PhpunitAssertionRecorder implements AssertionRecorder
      */
     public function createSuccess(array $events = array())
     {
-        PHPUnit_Framework_Assert::assertThat(
-            true,
-            PHPUnit_Framework_Assert::isTrue()
-        );
+        Assert::assertThat(true, Assert::isTrue());
 
         return new EventSequence($events, $this->callVerifierFactory);
     }
@@ -75,10 +72,7 @@ class PhpunitAssertionRecorder implements AssertionRecorder
      */
     public function createSuccessFromEventCollection(EventCollection $events)
     {
-        PHPUnit_Framework_Assert::assertThat(
-            true,
-            PHPUnit_Framework_Assert::isTrue()
-        );
+        Assert::assertThat(true, Assert::isTrue());
 
         return $events;
     }

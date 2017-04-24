@@ -14,10 +14,10 @@ namespace Eloquent\Phony\Phpunit;
 use Eloquent\Phony\Call\Arguments;
 use Eloquent\Phony\Matcher\MatcherFactory;
 use Eloquent\Phony\Phpunit\Test\TestEvent;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use ReflectionObject;
 
-class PhonyTest extends PHPUnit_Framework_TestCase
+class PhonyTest extends TestCase
 {
     protected function setUp()
     {
@@ -353,13 +353,13 @@ class PhonyTest extends PHPUnit_Framework_TestCase
 
     public function testInOrderMethodFailure()
     {
-        $this->setExpectedException('PHPUnit_Framework_AssertionFailedError');
+        $this->expectException('PHPUnit\Framework\AssertionFailedError');
         Phony::inOrder($this->eventB, $this->eventA);
     }
 
     public function testInOrderSequenceMethodFailure()
     {
-        $this->setExpectedException('PHPUnit_Framework_AssertionFailedError');
+        $this->expectException('PHPUnit\Framework\AssertionFailedError');
         Phony::inOrderSequence(array($this->eventB, $this->eventA));
     }
 
@@ -401,13 +401,13 @@ class PhonyTest extends PHPUnit_Framework_TestCase
 
     public function testInOrderFunctionFailure()
     {
-        $this->setExpectedException('PHPUnit_Framework_AssertionFailedError');
+        $this->expectException('PHPUnit\Framework\AssertionFailedError');
         inOrder($this->eventB, $this->eventA);
     }
 
     public function testInOrderSequenceFunctionFailure()
     {
-        $this->setExpectedException('PHPUnit_Framework_AssertionFailedError');
+        $this->expectException('PHPUnit\Framework\AssertionFailedError');
         inOrderSequence(array($this->eventB, $this->eventA));
     }
 
