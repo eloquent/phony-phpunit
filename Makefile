@@ -7,7 +7,7 @@ coverage: install
 	phpdbg -qrr vendor/bin/phpunit
 
 open-coverage:
-	open coverage/index.
+	open coverage/index.html
 
 integration: install
 	test/integration/run
