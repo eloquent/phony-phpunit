@@ -11,6 +11,8 @@ As a guideline, please follow this process when contributing:
       `coverage/index.html`.
     - Fix code style issues with `make lint`, but be sure to stage changes
       first.
+    - Run the integration tests with `make integration`. There should be one
+      passing test, and one failing test. This demonstrates *Phony*'s output.
 5. [Squash] commits if necessary (`git rebase -i master`).
 6. Submit a pull request to the **master** branch.
 

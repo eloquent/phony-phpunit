@@ -7,7 +7,10 @@ coverage: install
 	phpdbg -qrr vendor/bin/phpunit
 
 open-coverage:
-	open coverage/index.html
+	open coverage/index.
+
+integration: install
+	test/integration/run
 
 lint: test/bin/php-cs-fixer
 	test/bin/php-cs-fixer fix --using-cache no
@@ -15,7 +18,7 @@ lint: test/bin/php-cs-fixer
 install:
 	composer install
 
-.PHONY: test coverage open-coverage lint install
+.PHONY: test coverage open-coverage integration lint install
 
 test/bin/php-cs-fixer:
 	mkdir -p test/bin
