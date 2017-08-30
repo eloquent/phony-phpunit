@@ -1,14 +1,5 @@
 <?php
 
-/*
- * This file is part of the Phony package.
- *
- * Copyright © 2017 Erin Millard
- *
- * For the full copyright and license information, please view the LICENSE file
- * that was distributed with this source code.
- */
-
 namespace Eloquent\Phony\Phpunit;
 
 use PHPUnit\Framework\TestCase;
@@ -25,7 +16,6 @@ class PhpunitMatcherTest extends TestCase
 
     public function testConstructor()
     {
-        $this->assertSame($this->matcher, $this->subject->matcher());
         $this->assertSame($this->description, $this->subject->describe());
         $this->assertSame($this->description, strval($this->subject));
     }

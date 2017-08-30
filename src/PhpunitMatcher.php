@@ -1,24 +1,28 @@
 <?php
 
-/*
- * This file is part of the Phony package.
- *
- * Copyright © 2017 Erin Millard
- *
- * For the full copyright and license information, please view the LICENSE file
- * that was distributed with this source code.
- */
+declare(strict_types=1);
 
 namespace Eloquent\Phony\Phpunit;
 
 use Eloquent\Phony\Exporter\Exporter;
-use Eloquent\Phony\Matcher\WrappedMatcher;
+use Eloquent\Phony\Matcher\Matcher;
+use PHPUnit\Framework\Constraint\Constraint;
 
 /**
  * A matcher that wraps a PHPUnit constraint.
  */
-class PhpunitMatcher extends WrappedMatcher
+class PhpunitMatcher implements Matcher
 {
+    /**
+     * Construct a new PHPUnit matcher.
+     *
+     * @param Constraint $constraint The constraint to wrap.
+     */
+    public function __construct(Constraint $constraint)
+    {
+        $this->constraint = $constraint;
+    }
+
     /**
      * Returns `true` if `$value` matches this matcher's criteria.
      *
@@ -26,9 +30,9 @@ class PhpunitMatcher extends WrappedMatcher
      *
      * @return bool True if the value matches.
      */
-    public function matches($value)
+    public function matches($value): bool
     {
-        return (bool) $this->matcher->evaluate($value, null, true);
+        return (bool) $this->constraint->evaluate($value, null, true);
     }
 
     /**
@@ -38,9 +42,9 @@ class PhpunitMatcher extends WrappedMatcher
      *
      * @return string The description.
      */
-    public function describe(Exporter $exporter = null)
+    public function describe(Exporter $exporter = null): string
     {
-        return '<' . $this->matcher->toString() . '>';
+        return '<' . $this->constraint->toString() . '>';
     }
 
     /**
@@ -48,8 +52,10 @@ class PhpunitMatcher extends WrappedMatcher
      *
      * @return string The description.
      */
-    public function __toString()
+    public function __toString(): string
     {
-        return '<' . $this->matcher->toString() . '>';
+        return '<' . $this->constraint->toString() . '>';
     }
+
+    private $constraint;
 }

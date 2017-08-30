@@ -1,18 +1,27 @@
 <?php
 
-/*
- * This file is part of the Phony package.
- *
- * Copyright © 2017 Erin Millard
- *
- * For the full copyright and license information, please view the LICENSE file
- * that was distributed with this source code.
- */
-
 namespace Eloquent\Phony\Phpunit\Test;
 
-use Eloquent\Phony\Event\AbstractEvent;
+use Eloquent\Phony\Event\Event;
 
-class TestEvent extends AbstractEvent
+class TestEvent implements Event
 {
+    public function __construct(int $sequenceNumber, float $time)
+    {
+        $this->sequenceNumber = $sequenceNumber;
+        $this->time = $time;
+    }
+
+    public function sequenceNumber(): int
+    {
+        return $this->sequenceNumber;
+    }
+
+    public function time(): float
+    {
+        return $this->time;
+    }
+
+    private $sequenceNumber;
+    private $time;
 }

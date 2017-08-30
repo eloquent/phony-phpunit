@@ -1,18 +1,12 @@
 <?php
 
-/*
- * This file is part of the Phony package.
- *
- * Copyright © 2017 Erin Millard
- *
- * For the full copyright and license information, please view the LICENSE file
- * that was distributed with this source code.
- */
+declare(strict_types=1);
 
 namespace Eloquent\Phony\Phpunit;
 
 use Eloquent\Phony\Matcher\Matchable;
 use Eloquent\Phony\Matcher\MatcherDriver;
+use PHPUnit\Framework\Constraint\Constraint;
 
 /**
  * A matcher driver for PHPUnit constraints.
@@ -20,27 +14,13 @@ use Eloquent\Phony\Matcher\MatcherDriver;
 class PhpunitMatcherDriver implements MatcherDriver
 {
     /**
-     * Get the static instance of this driver.
-     *
-     * @return MatcherDriver The static driver.
-     */
-    public static function instance()
-    {
-        if (!self::$instance) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
-    }
-
-    /**
      * Returns true if this matcher driver's classes or interfaces exist.
      *
      * @return bool True if available.
      */
-    public function isAvailable()
+    public function isAvailable(): bool
     {
-        return class_exists('PHPUnit\Framework\Constraint\Constraint');
+        return class_exists(Constraint::class);
     }
 
     /**
@@ -48,9 +28,9 @@ class PhpunitMatcherDriver implements MatcherDriver
      *
      * @return array<string> The matcher class names.
      */
-    public function matcherClassNames()
+    public function matcherClassNames(): array
     {
-        return array('PHPUnit\Framework\Constraint\Constraint');
+        return [Constraint::class];
     }
 
     /**
@@ -60,10 +40,8 @@ class PhpunitMatcherDriver implements MatcherDriver
      *
      * @return Matchable The wrapped matcher.
      */
-    public function wrapMatcher($matcher)
+    public function wrapMatcher($matcher): Matchable
     {
         return new PhpunitMatcher($matcher);
     }
-
-    private static $instance;
 }

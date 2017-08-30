@@ -1,14 +1,5 @@
 <?php
 
-/*
- * This file is part of the Phony package.
- *
- * Copyright © 2017 Erin Millard
- *
- * For the full copyright and license information, please view the LICENSE file
- * that was distributed with this source code.
- */
-
 use Eloquent\Phony\Phpunit\Phony;
 
 class PhonyTest extends TestCase
@@ -28,9 +19,9 @@ class PhonyTest extends TestCase
 
     public function testShouldRecordFailingMockAssertions()
     {
-        $this->mock->testClassAMethodA('aardvark', array('bonobo', 'capybara', 'dugong'));
-        $this->mock->testClassAMethodA('armadillo', array('bonobo', 'chameleon', 'dormouse'));
+        $this->mock->testClassAMethodA('aardvark', ['bonobo', 'capybara', 'dugong']);
+        $this->mock->testClassAMethodA('armadillo', ['bonobo', 'chameleon', 'dormouse']);
 
-        $this->handle->testClassAMethodA->calledWith('aardvark', array('bonobo', 'chameleon', 'dugong'));
+        $this->handle->testClassAMethodA->calledWith('aardvark', ['bonobo', 'chameleon', 'dugong']);
     }
 }

@@ -1,31 +1,22 @@
 <?php
 
-/*
- * This file is part of the Phony package.
- *
- * Copyright © 2017 Erin Millard
- *
- * For the full copyright and license information, please view the LICENSE file
- * that was distributed with this source code.
- */
+declare(strict_types=1);
 
 namespace Eloquent\Phony\Phpunit;
 
-use Eloquent\Phony\Facade\AbstractFacade;
-use Eloquent\Phony\Facade\FacadeDriver;
+use Eloquent\Phony\Facade\FacadeTrait;
 
 /**
  * A facade for Phony usage under PHPUnit.
  */
-class Phony extends AbstractFacade
+class Phony
 {
-    /**
-     * Get the facade driver.
-     *
-     * @return FacadeDriver The facade driver.
-     */
-    protected static function driver()
+    use FacadeTrait;
+
+    private static function driver()
     {
-        return PhpunitFacadeDriver::instance();
+        return self::$driver ?? self::$driver = PhpunitFacadeDriver::instance();
     }
+
+    private static $driver;
 }

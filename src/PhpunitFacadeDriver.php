@@ -1,44 +1,31 @@
 <?php
 
-/*
- * This file is part of the Phony package.
- *
- * Copyright © 2017 Erin Millard
- *
- * For the full copyright and license information, please view the LICENSE file
- * that was distributed with this source code.
- */
+declare(strict_types=1);
 
 namespace Eloquent\Phony\Phpunit;
 
-use Eloquent\Phony\Facade\FacadeDriver;
+use Eloquent\Phony\Facade\FacadeDriverTrait;
 
 /**
  * A facade driver for PHPUnit.
  */
-class PhpunitFacadeDriver extends FacadeDriver
+class PhpunitFacadeDriver
 {
+    use FacadeDriverTrait;
+
     /**
      * Get the static instance of this driver.
      *
-     * @return FacadeDriver The static driver.
+     * @return PhpunitFacadeDriver The static driver.
      */
-    public static function instance()
+    public static function instance(): self
     {
-        if (!self::$instance) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
+        return self::$instance ?? self::$instance = new self();
     }
 
-    /**
-     * Construct a new Phpunit facade driver.
-     */
-    public function __construct()
+    private function __construct()
     {
-        parent::__construct(new PhpunitAssertionRecorder());
-
+        $this->initializeFacadeDriver(new PhpunitAssertionRecorder());
         $this->matcherFactory->addMatcherDriver(new PhpunitMatcherDriver());
     }
 

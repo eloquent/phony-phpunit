@@ -1,14 +1,5 @@
 <?php
 
-/*
- * This file is part of the Phony package.
- *
- * Copyright © 2017 Erin Millard
- *
- * For the full copyright and license information, please view the LICENSE file
- * that was distributed with this source code.
- */
-
 namespace Eloquent\Phony\Phpunit;
 
 use Eloquent\Phony\Call\Arguments;
@@ -47,21 +38,21 @@ class PhonyTest extends TestCase
 
     public function testPartialMock()
     {
-        $types = array('Eloquent\Phony\Phpunit\Test\TestClassB', 'Countable');
-        $arguments = new Arguments(array('a', 'b'));
+        $types = ['Eloquent\Phony\Phpunit\Test\TestClassB', 'Countable'];
+        $arguments = new Arguments(['a', 'b']);
         $actual = Phony::partialMock($types, $arguments);
 
         $this->assertInstanceOf('Eloquent\Phony\Mock\Handle\InstanceHandle', $actual);
         $this->assertInstanceOf('Eloquent\Phony\Mock\Mock', $actual->get());
         $this->assertInstanceOf('Eloquent\Phony\Phpunit\Test\TestClassB', $actual->get());
         $this->assertInstanceOf('Countable', $actual->get());
-        $this->assertSame(array('a', 'b'), $actual->get()->constructorArguments);
+        $this->assertSame(['a', 'b'], $actual->get()->constructorArguments);
         $this->assertSame('ab', $actual->get()->testClassAMethodA('a', 'b'));
     }
 
     public function testPartialMockWithNullArguments()
     {
-        $types = array('Eloquent\Phony\Phpunit\Test\TestClassB', 'Countable');
+        $types = ['Eloquent\Phony\Phpunit\Test\TestClassB', 'Countable'];
         $arguments = null;
         $actual = Phony::partialMock($types, $arguments);
 
@@ -75,14 +66,14 @@ class PhonyTest extends TestCase
 
     public function testPartialMockWithNoArguments()
     {
-        $types = array('Eloquent\Phony\Phpunit\Test\TestClassB', 'Countable');
+        $types = ['Eloquent\Phony\Phpunit\Test\TestClassB', 'Countable'];
         $actual = Phony::partialMock($types);
 
         $this->assertInstanceOf('Eloquent\Phony\Mock\Handle\InstanceHandle', $actual);
         $this->assertInstanceOf('Eloquent\Phony\Mock\Mock', $actual->get());
         $this->assertInstanceOf('Eloquent\Phony\Phpunit\Test\TestClassB', $actual->get());
         $this->assertInstanceOf('Countable', $actual->get());
-        $this->assertEquals(array(), $actual->get()->constructorArguments);
+        $this->assertEquals([], $actual->get()->constructorArguments);
         $this->assertSame('ab', $actual->get()->testClassAMethodA('a', 'b'));
     }
 
@@ -96,21 +87,21 @@ class PhonyTest extends TestCase
 
     public function testPartialMockFunction()
     {
-        $types = array('Eloquent\Phony\Phpunit\Test\TestClassB', 'Countable');
-        $arguments = new Arguments(array('a', 'b'));
+        $types = ['Eloquent\Phony\Phpunit\Test\TestClassB', 'Countable'];
+        $arguments = new Arguments(['a', 'b']);
         $actual = partialMock($types, $arguments);
 
         $this->assertInstanceOf('Eloquent\Phony\Mock\Handle\InstanceHandle', $actual);
         $this->assertInstanceOf('Eloquent\Phony\Mock\Mock', $actual->get());
         $this->assertInstanceOf('Eloquent\Phony\Phpunit\Test\TestClassB', $actual->get());
         $this->assertInstanceOf('Countable', $actual->get());
-        $this->assertSame(array('a', 'b'), $actual->get()->constructorArguments);
+        $this->assertSame(['a', 'b'], $actual->get()->constructorArguments);
         $this->assertSame('ab', $actual->get()->testClassAMethodA('a', 'b'));
     }
 
     public function testPartialMockFunctionWithNullArguments()
     {
-        $types = array('Eloquent\Phony\Phpunit\Test\TestClassB', 'Countable');
+        $types = ['Eloquent\Phony\Phpunit\Test\TestClassB', 'Countable'];
         $arguments = null;
         $actual = partialMock($types, $arguments);
 
@@ -124,14 +115,14 @@ class PhonyTest extends TestCase
 
     public function testPartialMockFunctionWithNoArguments()
     {
-        $types = array('Eloquent\Phony\Phpunit\Test\TestClassB', 'Countable');
+        $types = ['Eloquent\Phony\Phpunit\Test\TestClassB', 'Countable'];
         $actual = partialMock($types);
 
         $this->assertInstanceOf('Eloquent\Phony\Mock\Handle\InstanceHandle', $actual);
         $this->assertInstanceOf('Eloquent\Phony\Mock\Mock', $actual->get());
         $this->assertInstanceOf('Eloquent\Phony\Phpunit\Test\TestClassB', $actual->get());
         $this->assertInstanceOf('Countable', $actual->get());
-        $this->assertEquals(array(), $actual->get()->constructorArguments);
+        $this->assertEquals([], $actual->get()->constructorArguments);
         $this->assertSame('ab', $actual->get()->testClassAMethodA('a', 'b'));
     }
 
@@ -145,7 +136,7 @@ class PhonyTest extends TestCase
 
     public function testMock()
     {
-        $types = array('Eloquent\Phony\Phpunit\Test\TestClassB', 'Countable');
+        $types = ['Eloquent\Phony\Phpunit\Test\TestClassB', 'Countable'];
         $actual = Phony::mock($types);
 
         $this->assertInstanceOf('Eloquent\Phony\Mock\Handle\InstanceHandle', $actual);
@@ -158,7 +149,7 @@ class PhonyTest extends TestCase
 
     public function testMockFunction()
     {
-        $types = array('Eloquent\Phony\Phpunit\Test\TestClassB', 'Countable');
+        $types = ['Eloquent\Phony\Phpunit\Test\TestClassB', 'Countable'];
         $actual = mock($types);
 
         $this->assertInstanceOf('Eloquent\Phony\Mock\Handle\InstanceHandle', $actual);
@@ -239,8 +230,8 @@ class PhonyTest extends TestCase
         $actual = spyGlobal('vsprintf', 'Eloquent\Phony\Phpunit\Facade');
 
         $this->assertInstanceOf('Eloquent\Phony\Spy\SpyVerifier', $actual);
-        $this->assertSame('a, b', \Eloquent\Phony\Phpunit\Facade\vsprintf('%s, %s', array('a', 'b')));
-        $this->assertTrue((bool) $actual->calledWith('%s, %s', array('a', 'b')));
+        $this->assertSame('a, b', \Eloquent\Phony\Phpunit\Facade\vsprintf('%s, %s', ['a', 'b']));
+        $this->assertTrue((bool) $actual->calledWith('%s, %s', ['a', 'b']));
     }
 
     public function testStub()
@@ -279,12 +270,12 @@ class PhonyTest extends TestCase
     public function testStubGlobalFunction()
     {
         $actual = stubGlobal('vsprintf', 'Eloquent\Phony\Phpunit\Facade');
-        $actual->with('%s, %s', array('a', 'b'))->forwards();
+        $actual->with('%s, %s', ['a', 'b'])->forwards();
 
         $this->assertInstanceOf('Eloquent\Phony\Stub\StubVerifier', $actual);
-        $this->assertSame('a, b', \Eloquent\Phony\Phpunit\Facade\vsprintf('%s, %s', array('a', 'b')));
+        $this->assertSame('a, b', \Eloquent\Phony\Phpunit\Facade\vsprintf('%s, %s', ['a', 'b']));
         $this->assertNull(\Eloquent\Phony\Phpunit\Facade\vsprintf('x', 'y'));
-        $this->assertTrue((bool) $actual->calledWith('%s, %s', array('a', 'b')));
+        $this->assertTrue((bool) $actual->calledWith('%s, %s', ['a', 'b']));
     }
 
     public function testRestoreGlobalFunctions()
@@ -293,12 +284,12 @@ class PhonyTest extends TestCase
         Phony::stubGlobal('vsprintf', 'Eloquent\Phony\Phpunit\Facade');
 
         $this->assertNull(\Eloquent\Phony\Phpunit\Facade\sprintf('%s, %s', 'a', 'b'));
-        $this->assertNull(\Eloquent\Phony\Phpunit\Facade\vsprintf('%s, %s', array('a', 'b')));
+        $this->assertNull(\Eloquent\Phony\Phpunit\Facade\vsprintf('%s, %s', ['a', 'b']));
 
         Phony::restoreGlobalFunctions();
 
         $this->assertSame('a, b', \Eloquent\Phony\Phpunit\Facade\sprintf('%s, %s', 'a', 'b'));
-        $this->assertSame('a, b', \Eloquent\Phony\Phpunit\Facade\vsprintf('%s, %s', array('a', 'b')));
+        $this->assertSame('a, b', \Eloquent\Phony\Phpunit\Facade\vsprintf('%s, %s', ['a', 'b']));
     }
 
     public function testRestoreGlobalFunctionsFunction()
@@ -307,12 +298,12 @@ class PhonyTest extends TestCase
         stubGlobal('vsprintf', 'Eloquent\Phony\Phpunit\Facade');
 
         $this->assertNull(\Eloquent\Phony\Phpunit\Facade\sprintf('%s, %s', 'a', 'b'));
-        $this->assertNull(\Eloquent\Phony\Phpunit\Facade\vsprintf('%s, %s', array('a', 'b')));
+        $this->assertNull(\Eloquent\Phony\Phpunit\Facade\vsprintf('%s, %s', ['a', 'b']));
 
         restoreGlobalFunctions();
 
         $this->assertSame('a, b', \Eloquent\Phony\Phpunit\Facade\sprintf('%s, %s', 'a', 'b'));
-        $this->assertSame('a, b', \Eloquent\Phony\Phpunit\Facade\vsprintf('%s, %s', array('a', 'b')));
+        $this->assertSame('a, b', \Eloquent\Phony\Phpunit\Facade\vsprintf('%s, %s', ['a', 'b']));
     }
 
     public function testEventOrderMethods()
@@ -323,15 +314,7 @@ class PhonyTest extends TestCase
         $result = Phony::inOrder($this->eventA, $this->eventB);
 
         $this->assertInstanceOf('Eloquent\Phony\Event\EventSequence', $result);
-        $this->assertEquals(array($this->eventA, $this->eventB), $result->allEvents());
-
-        $this->assertTrue((bool) Phony::checkInOrderSequence(array($this->eventA, $this->eventB)));
-        $this->assertFalse((bool) Phony::checkInOrderSequence(array($this->eventB, $this->eventA)));
-
-        $result = Phony::inOrderSequence(array($this->eventA, $this->eventB));
-
-        $this->assertInstanceOf('Eloquent\Phony\Event\EventSequence', $result);
-        $this->assertEquals(array($this->eventA, $this->eventB), $result->allEvents());
+        $this->assertEquals([$this->eventA, $this->eventB], $result->allEvents());
 
         $this->assertTrue((bool) Phony::checkAnyOrder($this->eventA, $this->eventB));
         $this->assertFalse((bool) Phony::checkAnyOrder());
@@ -339,28 +322,15 @@ class PhonyTest extends TestCase
         $result = Phony::anyOrder($this->eventA, $this->eventB);
 
         $this->assertInstanceOf('Eloquent\Phony\Event\EventSequence', $result);
-        $this->assertEquals(array($this->eventA, $this->eventB), $result->allEvents());
+        $this->assertEquals([$this->eventA, $this->eventB], $result->allEvents());
 
-        $this->assertTrue((bool) Phony::checkAnyOrderSequence(array($this->eventA, $this->eventB)));
-        $this->assertFalse((bool) Phony::checkAnyOrderSequence(array()));
         $this->assertFalse((bool) Phony::checkAnyOrder());
-
-        $result = Phony::anyOrderSequence(array($this->eventA, $this->eventB));
-
-        $this->assertInstanceOf('Eloquent\Phony\Event\EventSequence', $result);
-        $this->assertEquals(array($this->eventA, $this->eventB), $result->allEvents());
     }
 
     public function testInOrderMethodFailure()
     {
         $this->expectException('PHPUnit\Framework\AssertionFailedError');
         Phony::inOrder($this->eventB, $this->eventA);
-    }
-
-    public function testInOrderSequenceMethodFailure()
-    {
-        $this->expectException('PHPUnit\Framework\AssertionFailedError');
-        Phony::inOrderSequence(array($this->eventB, $this->eventA));
     }
 
     public function testEventOrderFunctions()
@@ -371,15 +341,7 @@ class PhonyTest extends TestCase
         $result = inOrder($this->eventA, $this->eventB);
 
         $this->assertInstanceOf('Eloquent\Phony\Event\EventSequence', $result);
-        $this->assertEquals(array($this->eventA, $this->eventB), $result->allEvents());
-
-        $this->assertTrue((bool) checkInOrderSequence(array($this->eventA, $this->eventB)));
-        $this->assertFalse((bool) checkInOrderSequence(array($this->eventB, $this->eventA)));
-
-        $result = inOrderSequence(array($this->eventA, $this->eventB));
-
-        $this->assertInstanceOf('Eloquent\Phony\Event\EventSequence', $result);
-        $this->assertEquals(array($this->eventA, $this->eventB), $result->allEvents());
+        $this->assertEquals([$this->eventA, $this->eventB], $result->allEvents());
 
         $this->assertTrue((bool) checkAnyOrder($this->eventA, $this->eventB));
         $this->assertFalse((bool) checkAnyOrder());
@@ -387,28 +349,15 @@ class PhonyTest extends TestCase
         $result = anyOrder($this->eventA, $this->eventB);
 
         $this->assertInstanceOf('Eloquent\Phony\Event\EventSequence', $result);
-        $this->assertEquals(array($this->eventA, $this->eventB), $result->allEvents());
+        $this->assertEquals([$this->eventA, $this->eventB], $result->allEvents());
 
-        $this->assertTrue((bool) checkAnyOrderSequence(array($this->eventA, $this->eventB)));
-        $this->assertFalse((bool) checkAnyOrderSequence(array()));
         $this->assertFalse((bool) checkAnyOrder());
-
-        $result = anyOrderSequence(array($this->eventA, $this->eventB));
-
-        $this->assertInstanceOf('Eloquent\Phony\Event\EventSequence', $result);
-        $this->assertEquals(array($this->eventA, $this->eventB), $result->allEvents());
     }
 
     public function testInOrderFunctionFailure()
     {
         $this->expectException('PHPUnit\Framework\AssertionFailedError');
         inOrder($this->eventB, $this->eventA);
-    }
-
-    public function testInOrderSequenceFunctionFailure()
-    {
-        $this->expectException('PHPUnit\Framework\AssertionFailedError');
-        inOrderSequence(array($this->eventB, $this->eventA));
     }
 
     public function testAny()

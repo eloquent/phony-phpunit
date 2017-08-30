@@ -1,13 +1,6 @@
 <?php
 
-/*
- * This file is part of the Phony package.
- *
- * Copyright © 2017 Erin Millard
- *
- * For the full copyright and license information, please view the LICENSE file
- * that was distributed with this source code.
- */
+declare(strict_types=1);
 
 namespace Eloquent\Phony\Phpunit;
 
@@ -39,7 +32,7 @@ use ReflectionClass;
  *
  * @return MockBuilder The mock builder.
  */
-function mockBuilder($types = array())
+function mockBuilder($types = []): MockBuilder
 {
     return PhpunitFacadeDriver::instance()->mockBuilderFactory
         ->create($types);
@@ -56,7 +49,7 @@ function mockBuilder($types = array())
  *
  * @return InstanceHandle A handle around the new mock.
  */
-function mock($types = array())
+function mock($types = []): InstanceHandle
 {
     $driver = PhpunitFacadeDriver::instance();
 
@@ -81,7 +74,7 @@ function mock($types = array())
  *
  * @return InstanceHandle A handle around the new mock.
  */
-function partialMock($types = array(), $arguments = array())
+function partialMock($types = [], $arguments = []): InstanceHandle
 {
     $driver = PhpunitFacadeDriver::instance();
 
@@ -98,7 +91,7 @@ function partialMock($types = array(), $arguments = array())
  * @return InstanceHandle The newly created handle.
  * @throws MockException  If the supplied mock is invalid.
  */
-function on($mock)
+function on($mock): InstanceHandle
 {
     return PhpunitFacadeDriver::instance()->handleFactory
         ->instanceHandle($mock);
@@ -112,7 +105,7 @@ function on($mock)
  * @return StaticHandle  The newly created handle.
  * @throws MockException If the supplied class name is not a mock class.
  */
-function onStatic($class)
+function onStatic($class): StaticHandle
 {
     return PhpunitFacadeDriver::instance()->handleFactory->staticHandle($class);
 }
@@ -124,7 +117,7 @@ function onStatic($class)
  *
  * @return SpyVerifier The new spy.
  */
-function spy($callback = null)
+function spy(callable $callback = null): SpyVerifier
 {
     return PhpunitFacadeDriver::instance()->spyVerifierFactory
         ->createFromCallback($callback);
@@ -139,7 +132,7 @@ function spy($callback = null)
  *
  * @return SpyVerifier The new spy.
  */
-function spyGlobal($function, $namespace)
+function spyGlobal(string $function, string $namespace): SpyVerifier
 {
     return PhpunitFacadeDriver::instance()->spyVerifierFactory
         ->createGlobal($function, $namespace);
@@ -152,7 +145,7 @@ function spyGlobal($function, $namespace)
  *
  * @return StubVerifier The new stub.
  */
-function stub($callback = null)
+function stub(callable $callback = null): StubVerifier
 {
     return PhpunitFacadeDriver::instance()->stubVerifierFactory
         ->createFromCallback($callback);
@@ -170,7 +163,7 @@ function stub($callback = null)
  *
  * @return StubVerifier The new stub.
  */
-function stubGlobal($function, $namespace)
+function stubGlobal(string $function, string $namespace): StubVerifier
 {
     return PhpunitFacadeDriver::instance()->stubVerifierFactory
         ->createGlobal($function, $namespace);
@@ -193,10 +186,10 @@ function restoreGlobalFunctions()
  *
  * @return EventCollection|null The result.
  */
-function checkInOrder()
+function checkInOrder(...$events)
 {
     return PhpunitFacadeDriver::instance()->eventOrderVerifier
-        ->checkInOrderSequence(func_get_args());
+        ->checkInOrder(...$events);
 }
 
 /**
@@ -208,38 +201,10 @@ function checkInOrder()
  * @return EventCollection The result.
  * @throws Exception       If the assertion fails, and the assertion recorder throws exceptions.
  */
-function inOrder()
+function inOrder(...$events): EventCollection
 {
     return PhpunitFacadeDriver::instance()->eventOrderVerifier
-        ->inOrderSequence(func_get_args());
-}
-
-/**
- * Checks if the supplied event sequence happened in chronological order.
- *
- * @param mixed<Event|EventCollection> $events The event sequence.
- *
- * @return EventCollection|null The result.
- */
-function checkInOrderSequence($events)
-{
-    return PhpunitFacadeDriver::instance()->eventOrderVerifier
-        ->checkInOrderSequence($events);
-}
-
-/**
- * Throws an exception unless the supplied event sequence happened in
- * chronological order.
- *
- * @param mixed<Event|EventCollection> $events The event sequence.
- *
- * @return EventCollection The result.
- * @throws Exception       If the assertion fails, and the assertion recorder throws exceptions.
- */
-function inOrderSequence($events)
-{
-    return PhpunitFacadeDriver::instance()->eventOrderVerifier
-        ->inOrderSequence($events);
+        ->inOrder(...$events);
 }
 
 /**
@@ -250,10 +215,10 @@ function inOrderSequence($events)
  * @return EventCollection|null     The result.
  * @throws InvalidArgumentException If invalid input is supplied.
  */
-function checkAnyOrder()
+function checkAnyOrder(...$events)
 {
     return PhpunitFacadeDriver::instance()->eventOrderVerifier
-        ->checkAnyOrderSequence(func_get_args());
+        ->checkAnyOrder(...$events);
 }
 
 /**
@@ -265,40 +230,10 @@ function checkAnyOrder()
  * @throws InvalidArgumentException If invalid input is supplied.
  * @throws Exception                If the assertion fails, and the assertion recorder throws exceptions.
  */
-function anyOrder()
+function anyOrder(...$events): EventCollection
 {
     return PhpunitFacadeDriver::instance()->eventOrderVerifier
-        ->anyOrderSequence(func_get_args());
-}
-
-/**
- * Checks if the supplied event sequence contains at least one event.
- *
- * @param mixed<Event|EventCollection> $events The event sequence.
- *
- * @return EventCollection|null     The result.
- * @throws InvalidArgumentException If invalid input is supplied.
- */
-function checkAnyOrderSequence($events)
-{
-    return PhpunitFacadeDriver::instance()->eventOrderVerifier
-        ->checkAnyOrderSequence($events);
-}
-
-/**
- * Throws an exception unless the supplied event sequence contains at least
- * one event.
- *
- * @param mixed<Event|EventCollection> $events The event sequence.
- *
- * @return EventCollection          The result.
- * @throws InvalidArgumentException If invalid input is supplied.
- * @throws Exception                If the assertion fails, and the assertion recorder throws exceptions.
- */
-function anyOrderSequence($events)
-{
-    return PhpunitFacadeDriver::instance()->eventOrderVerifier
-        ->anyOrderSequence($events);
+        ->anyOrder(...$events);
 }
 
 /**
@@ -306,7 +241,7 @@ function anyOrderSequence($events)
  *
  * @return Matcher The newly created matcher.
  */
-function any()
+function any(): Matcher
 {
     return PhpunitFacadeDriver::instance()->matcherFactory->any();
 }
@@ -318,7 +253,7 @@ function any()
  *
  * @return Matcher The newly created matcher.
  */
-function equalTo($value)
+function equalTo($value): Matcher
 {
     return PhpunitFacadeDriver::instance()->matcherFactory
         ->equalTo($value, false);
@@ -327,17 +262,19 @@ function equalTo($value)
 /**
  * Create a new matcher that matches multiple arguments.
  *
- * @param mixed    $value            The value to check for each argument.
- * @param int      $minimumArguments The minimum number of arguments.
- * @param int|null $maximumArguments The maximum number of arguments.
+ * Negative values for $maximumArguments are treated as "no maximum".
+ *
+ * @param mixed $value            The value to check for each argument.
+ * @param int   $minimumArguments The minimum number of arguments.
+ * @param int   $maximumArguments The maximum number of arguments.
  *
  * @return WildcardMatcher The newly created wildcard matcher.
  */
 function wildcard(
     $value = null,
-    $minimumArguments = 0,
-    $maximumArguments = null
-) {
+    int $minimumArguments = 0,
+    int $maximumArguments = -1
+): WildcardMatcher {
     return PhpunitFacadeDriver::instance()->matcherFactory
         ->wildcard($value, $minimumArguments, $maximumArguments);
 }
@@ -351,7 +288,7 @@ function wildcard(
  *
  * @return int The previous depth.
  */
-function setExportDepth($depth)
+function setExportDepth(int $depth): int
 {
     return PhpunitFacadeDriver::instance()->exporter->setDepth($depth);
 }
@@ -363,7 +300,7 @@ function setExportDepth($depth)
  *
  * @param bool|null $useColor True to use color.
  */
-function setUseColor($useColor)
+function setUseColor(bool $useColor = null)
 {
     $facade = PhpunitFacadeDriver::instance();
 

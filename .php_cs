@@ -14,7 +14,7 @@ return PhpCsFixer\Config::create()
     ->setRules(array(
         '@PSR2' => true,
 
-        'array_syntax' => array('syntax' => 'long'),
+        'array_syntax' => array('syntax' => 'short'),
         'binary_operator_spaces' => false,
         'blank_line_after_opening_tag' => true,
         'blank_line_before_return' => true,
