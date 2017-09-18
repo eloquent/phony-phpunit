@@ -52,7 +52,8 @@ class PhpunitAssertionRecorderTest extends TestCase
     {
         $description = 'description';
 
-        $this->expectException('Eloquent\Phony\Phpunit\PhpunitAssertionException', $description);
+        $this->expectException(PhpunitAssertionException::class);
+        $this->expectExceptionMessage($description);
         $this->subject->createFailure($description);
     }
 }

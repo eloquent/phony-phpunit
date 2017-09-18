@@ -2,6 +2,7 @@
 
 namespace Eloquent\Phony\Phpunit;
 
+use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\TestCase;
 
 class PhpunitMatcherDriverTest extends TestCase
@@ -20,7 +21,7 @@ class PhpunitMatcherDriverTest extends TestCase
 
     public function testMatcherClassNames()
     {
-        $this->assertSame(['PHPUnit\Framework\Constraint\Constraint'], $this->subject->matcherClassNames());
+        $this->assertSame([Constraint::class], $this->subject->matcherClassNames());
     }
 
     public function testWrapMatcher()

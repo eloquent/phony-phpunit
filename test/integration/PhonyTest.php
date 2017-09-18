@@ -1,12 +1,13 @@
 <?php
 
 use Eloquent\Phony\Phpunit\Phony;
+use Eloquent\Phony\Phpunit\Test\TestClassA;
 
 class PhonyTest extends TestCase
 {
     protected function setUp()
     {
-        $this->handle = Phony::mock('Eloquent\Phony\Phpunit\Test\TestClassA');
+        $this->handle = Phony::mock(TestClassA::class);
         $this->mock = $this->handle->get();
     }
 
