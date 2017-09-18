@@ -1,5 +1,11 @@
 # Phony for PHPUnit changelog
 
+## Next release
+
+- **[IMPROVED]** Support for PHP 7.2 features, including the `object` typehint.
+- **[IMPROVED]** Reduced the amount of output generated when mocks, stubs, and
+  spies are encountered by `var_dump()`.
+
 ## 2.0.0 (2017-04-24)
 
 - **[NEW]** Support for PHPUnit 6.
