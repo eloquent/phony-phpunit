@@ -260,6 +260,18 @@ function equalTo($value): Matcher
 }
 
 /**
+ * Create a new instance of matcher.
+ *
+ * @param string|object $type The type to check against.
+ *
+ * @return Matcher The newly created matcher.
+ */
+function anInstanceOf($type): Matcher
+{
+    return PhpunitFacadeDriver::instance()->matcherFactory->anInstanceOf($type);
+}
+
+/**
  * Create a new matcher that matches multiple arguments.
  *
  * Negative values for $maximumArguments are treated as "no maximum".

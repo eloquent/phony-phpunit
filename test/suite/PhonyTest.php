@@ -7,6 +7,7 @@ use Eloquent\Phony\Call\Arguments;
 use Eloquent\Phony\Event\EventSequence;
 use Eloquent\Phony\Matcher\AnyMatcher;
 use Eloquent\Phony\Matcher\EqualToMatcher;
+use Eloquent\Phony\Matcher\InstanceOfMatcher;
 use Eloquent\Phony\Matcher\MatcherFactory;
 use Eloquent\Phony\Matcher\WildcardMatcher;
 use Eloquent\Phony\Mock\Builder\MockBuilder;
@@ -403,6 +404,22 @@ class PhonyTest extends TestCase
 
         $this->assertInstanceOf(EqualToMatcher::class, $actual);
         $this->assertSame('a', $actual->value());
+    }
+
+    public function testAnInstanceOf()
+    {
+        $actual = Phony::anInstanceOf(TestClassA::class);
+
+        $this->assertInstanceOf(InstanceOfMatcher::class, $actual);
+        $this->assertSame(TestClassA::class, $actual->type());
+    }
+
+    public function testAnInstanceOfFunction()
+    {
+        $actual = anInstanceOf(TestClassA::class);
+
+        $this->assertInstanceOf(InstanceOfMatcher::class, $actual);
+        $this->assertSame(TestClassA::class, $actual->type());
     }
 
     public function testWildcard()
