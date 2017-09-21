@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Eloquent\Phony\Phpunit\Phony;
 use Eloquent\Phony\Phpunit\Test\TestClassA;
 use PHPUnit\Framework\TestCase;

@@ -17,7 +17,8 @@
         "phpunit/phpunit": "^6"
     },
     "require-dev": {
-        "errors/exceptions": "^0.2"
+        "errors/exceptions": "^0.2",
+        "friendsofphp/php-cs-fixer": "^2"
     },
     "autoload": {
         "psr-4": {

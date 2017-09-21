@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Eloquent\Phony\Phpunit\Test;
 
 use Eloquent\Phony\Event\Event;
