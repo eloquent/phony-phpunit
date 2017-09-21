@@ -2,6 +2,7 @@
 
 use Eloquent\Phony\Phpunit\Phony;
 use Eloquent\Phony\Phpunit\Test\TestClassA;
+use PHPUnit\Framework\TestCase;
 
 class PhonyTest extends TestCase
 {
