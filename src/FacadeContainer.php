@@ -18,6 +18,4 @@ class FacadeContainer
         $this->initializeContainer(new AssertionRecorder());
         $this->matcherFactory->addMatcherDriver(new ConstraintMatcherDriver());
     }
-
-    public $filterManager;
 }
