@@ -488,7 +488,7 @@ class PhonyTest extends TestCase
 
         $assertionRecorder = $property->getValue($callVerifierFactory);
 
-        $this->assertInstanceOf(PhpunitAssertionRecorder::class, $assertionRecorder);
+        $this->assertInstanceOf(AssertionRecorder::class, $assertionRecorder);
     }
 
     private function assertStubAssertionRecorder($stub)
@@ -505,6 +505,6 @@ class PhonyTest extends TestCase
 
         $assertionRecorder = $property->getValue($callVerifierFactory);
 
-        $this->assertInstanceOf(PhpunitAssertionRecorder::class, $assertionRecorder);
+        $this->assertInstanceOf(AssertionRecorder::class, $assertionRecorder);
     }
 }

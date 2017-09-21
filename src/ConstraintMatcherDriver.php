@@ -11,7 +11,7 @@ use PHPUnit\Framework\Constraint\Constraint;
 /**
  * A matcher driver for PHPUnit constraints.
  */
-class PhpunitMatcherDriver implements MatcherDriver
+class ConstraintMatcherDriver implements MatcherDriver
 {
     /**
      * Returns true if this matcher driver's classes or interfaces exist.
@@ -42,6 +42,6 @@ class PhpunitMatcherDriver implements MatcherDriver
      */
     public function wrapMatcher($matcher): Matchable
     {
-        return new PhpunitMatcher($matcher);
+        return new ConstraintMatcher($matcher);
     }
 }

@@ -24,6 +24,7 @@
             "Eloquent\\Phony\\Phpunit\\": "src"
         },
         "files": [
+            "src/initialize.php",
             "src/functions.php"
         ]
     },

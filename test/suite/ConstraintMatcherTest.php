@@ -4,12 +4,12 @@ namespace Eloquent\Phony\Phpunit;
 
 use PHPUnit\Framework\TestCase;
 
-class PhpunitMatcherTest extends TestCase
+class ConstraintMatcherTest extends TestCase
 {
     protected function setUp()
     {
         $this->matcher = $this->equalTo('x');
-        $this->subject = new PhpunitMatcher($this->matcher);
+        $this->subject = new ConstraintMatcher($this->matcher);
 
         $this->description = '<is equal to <string:x>>';
     }

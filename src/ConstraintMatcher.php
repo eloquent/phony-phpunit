@@ -11,10 +11,10 @@ use PHPUnit\Framework\Constraint\Constraint;
 /**
  * A matcher that wraps a PHPUnit constraint.
  */
-class PhpunitMatcher implements Matcher
+class ConstraintMatcher implements Matcher
 {
     /**
-     * Construct a new PHPUnit matcher.
+     * Construct a new constraint matcher.
      *
      * @param Constraint $constraint The constraint to wrap.
      */

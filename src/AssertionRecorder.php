@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Eloquent\Phony\Phpunit;
 
-use Eloquent\Phony\Assertion\AssertionRecorder;
+use Eloquent\Phony\Assertion\AssertionRecorder as PhonyAssertionRecorder;
 use Eloquent\Phony\Call\CallVerifierFactory;
 use Eloquent\Phony\Event\Event;
 use Eloquent\Phony\Event\EventCollection;
@@ -15,7 +15,7 @@ use PHPUnit\Framework\Assert;
 /**
  * An assertion recorder for PHPUnit.
  */
-class PhpunitAssertionRecorder implements AssertionRecorder
+class AssertionRecorder implements PhonyAssertionRecorder
 {
     /**
      * Set the call verifier factory.
@@ -66,7 +66,7 @@ class PhpunitAssertionRecorder implements AssertionRecorder
      */
     public function createFailure(string $description)
     {
-        throw new PhpunitAssertionException($description);
+        throw new AssertionException($description);
     }
 
     private $callVerifierFactory;

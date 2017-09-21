@@ -5,11 +5,11 @@ namespace Eloquent\Phony\Phpunit;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\TestCase;
 
-class PhpunitMatcherDriverTest extends TestCase
+class ConstraintMatcherDriverTest extends TestCase
 {
     protected function setUp()
     {
-        $this->subject = new PhpunitMatcherDriver();
+        $this->subject = new ConstraintMatcherDriver();
 
         $this->matcher = $this->equalTo('x');
     }
@@ -26,6 +26,6 @@ class PhpunitMatcherDriverTest extends TestCase
 
     public function testWrapMatcher()
     {
-        $this->assertEquals(new PhpunitMatcher($this->matcher), $this->subject->wrapMatcher($this->matcher));
+        $this->assertEquals(new ConstraintMatcher($this->matcher), $this->subject->wrapMatcher($this->matcher));
     }
 }

@@ -66,12 +66,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/eloquent/phony.git",
-                "reference": "52a4264aeea2df5c5b975ebc263557088d67ab57"
+                "reference": "52388210f9f49e26f2d33b73c07dffa860d29f4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/eloquent/phony/zipball/52a4264aeea2df5c5b975ebc263557088d67ab57",
-                "reference": "52a4264aeea2df5c5b975ebc263557088d67ab57",
+                "url": "https://api.github.com/repos/eloquent/phony/zipball/52388210f9f49e26f2d33b73c07dffa860d29f4d",
+                "reference": "52388210f9f49e26f2d33b73c07dffa860d29f4d",
                 "shasum": ""
             },
             "require": {
@@ -90,6 +90,7 @@
                     "Eloquent\\Phony\\": "src"
                 },
                 "files": [
+                    "src/initialize.php",
                     "src/functions.php"
                 ]
             },
@@ -117,7 +118,7 @@
                 "stubbing",
                 "test"
             ],
-            "time": "2017-09-20T02:59:28+00:00"
+            "time": "2017-09-21T11:26:19+00:00"
         },
         {
             "name": "myclabs/deep-copy",

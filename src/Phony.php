@@ -13,10 +13,5 @@ class Phony
 {
     use FacadeTrait;
 
-    private static function driver()
-    {
-        return self::$driver ?? self::$driver = PhpunitFacadeDriver::instance();
-    }
-
-    private static $driver;
+    private static $globals = Globals::class;
 }

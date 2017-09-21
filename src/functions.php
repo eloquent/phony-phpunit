@@ -34,8 +34,7 @@ use ReflectionClass;
  */
 function mockBuilder($types = []): MockBuilder
 {
-    return PhpunitFacadeDriver::instance()->mockBuilderFactory
-        ->create($types);
+    return Globals::$container->mockBuilderFactory->create($types);
 }
 
 /**
@@ -51,10 +50,10 @@ function mockBuilder($types = []): MockBuilder
  */
 function mock($types = []): InstanceHandle
 {
-    $driver = PhpunitFacadeDriver::instance();
+    $container = Globals::$container;
 
-    return $driver->handleFactory->instanceHandle(
-        $driver->mockBuilderFactory->create($types)->full()
+    return $container->handleFactory->instanceHandle(
+        $container->mockBuilderFactory->create($types)->full()
     );
 }
 
@@ -76,10 +75,10 @@ function mock($types = []): InstanceHandle
  */
 function partialMock($types = [], $arguments = []): InstanceHandle
 {
-    $driver = PhpunitFacadeDriver::instance();
+    $container = Globals::$container;
 
-    return $driver->handleFactory->instanceHandle(
-        $driver->mockBuilderFactory->create($types)->partialWith($arguments)
+    return $container->handleFactory->instanceHandle(
+        $container->mockBuilderFactory->create($types)->partialWith($arguments)
     );
 }
 
@@ -93,8 +92,7 @@ function partialMock($types = [], $arguments = []): InstanceHandle
  */
 function on($mock): InstanceHandle
 {
-    return PhpunitFacadeDriver::instance()->handleFactory
-        ->instanceHandle($mock);
+    return Globals::$container->handleFactory->instanceHandle($mock);
 }
 
 /**
@@ -107,7 +105,7 @@ function on($mock): InstanceHandle
  */
 function onStatic($class): StaticHandle
 {
-    return PhpunitFacadeDriver::instance()->handleFactory->staticHandle($class);
+    return Globals::$container->handleFactory->staticHandle($class);
 }
 
 /**
@@ -119,7 +117,7 @@ function onStatic($class): StaticHandle
  */
 function spy(callable $callback = null): SpyVerifier
 {
-    return PhpunitFacadeDriver::instance()->spyVerifierFactory
+    return Globals::$container->spyVerifierFactory
         ->createFromCallback($callback);
 }
 
@@ -134,7 +132,7 @@ function spy(callable $callback = null): SpyVerifier
  */
 function spyGlobal(string $function, string $namespace): SpyVerifier
 {
-    return PhpunitFacadeDriver::instance()->spyVerifierFactory
+    return Globals::$container->spyVerifierFactory
         ->createGlobal($function, $namespace);
 }
 
@@ -147,7 +145,7 @@ function spyGlobal(string $function, string $namespace): SpyVerifier
  */
 function stub(callable $callback = null): StubVerifier
 {
-    return PhpunitFacadeDriver::instance()->stubVerifierFactory
+    return Globals::$container->stubVerifierFactory
         ->createFromCallback($callback);
 }
 
@@ -165,7 +163,7 @@ function stub(callable $callback = null): StubVerifier
  */
 function stubGlobal(string $function, string $namespace): StubVerifier
 {
-    return PhpunitFacadeDriver::instance()->stubVerifierFactory
+    return Globals::$container->stubVerifierFactory
         ->createGlobal($function, $namespace);
 }
 
@@ -175,8 +173,7 @@ function stubGlobal(string $function, string $namespace): StubVerifier
  */
 function restoreGlobalFunctions()
 {
-    return PhpunitFacadeDriver::instance()->functionHookManager
-        ->restoreGlobalFunctions();
+    return Globals::$container->functionHookManager->restoreGlobalFunctions();
 }
 
 /**
@@ -188,8 +185,7 @@ function restoreGlobalFunctions()
  */
 function checkInOrder(...$events)
 {
-    return PhpunitFacadeDriver::instance()->eventOrderVerifier
-        ->checkInOrder(...$events);
+    return Globals::$container->eventOrderVerifier->checkInOrder(...$events);
 }
 
 /**
@@ -203,8 +199,7 @@ function checkInOrder(...$events)
  */
 function inOrder(...$events): EventCollection
 {
-    return PhpunitFacadeDriver::instance()->eventOrderVerifier
-        ->inOrder(...$events);
+    return Globals::$container->eventOrderVerifier->inOrder(...$events);
 }
 
 /**
@@ -217,8 +212,7 @@ function inOrder(...$events): EventCollection
  */
 function checkAnyOrder(...$events)
 {
-    return PhpunitFacadeDriver::instance()->eventOrderVerifier
-        ->checkAnyOrder(...$events);
+    return Globals::$container->eventOrderVerifier->checkAnyOrder(...$events);
 }
 
 /**
@@ -232,8 +226,7 @@ function checkAnyOrder(...$events)
  */
 function anyOrder(...$events): EventCollection
 {
-    return PhpunitFacadeDriver::instance()->eventOrderVerifier
-        ->anyOrder(...$events);
+    return Globals::$container->eventOrderVerifier->anyOrder(...$events);
 }
 
 /**
@@ -243,7 +236,7 @@ function anyOrder(...$events): EventCollection
  */
 function any(): Matcher
 {
-    return PhpunitFacadeDriver::instance()->matcherFactory->any();
+    return Globals::$container->matcherFactory->any();
 }
 
 /**
@@ -255,8 +248,7 @@ function any(): Matcher
  */
 function equalTo($value): Matcher
 {
-    return PhpunitFacadeDriver::instance()->matcherFactory
-        ->equalTo($value, false);
+    return Globals::$container->matcherFactory->equalTo($value, false);
 }
 
 /**
@@ -268,7 +260,7 @@ function equalTo($value): Matcher
  */
 function anInstanceOf($type): Matcher
 {
-    return PhpunitFacadeDriver::instance()->matcherFactory->anInstanceOf($type);
+    return Globals::$container->matcherFactory->anInstanceOf($type);
 }
 
 /**
@@ -287,7 +279,7 @@ function wildcard(
     int $minimumArguments = 0,
     int $maximumArguments = -1
 ): WildcardMatcher {
-    return PhpunitFacadeDriver::instance()->matcherFactory
+    return Globals::$container->matcherFactory
         ->wildcard($value, $minimumArguments, $maximumArguments);
 }
 
@@ -302,7 +294,7 @@ function wildcard(
  */
 function setExportDepth(int $depth): int
 {
-    return PhpunitFacadeDriver::instance()->exporter->setDepth($depth);
+    return Globals::$container->exporter->setDepth($depth);
 }
 
 /**
@@ -314,8 +306,8 @@ function setExportDepth(int $depth): int
  */
 function setUseColor(bool $useColor = null)
 {
-    $facade = PhpunitFacadeDriver::instance();
+    $container = Globals::$container;
 
-    $facade->assertionRenderer->setUseColor($useColor);
-    $facade->differenceEngine->setUseColor($useColor);
+    $container->assertionRenderer->setUseColor($useColor);
+    $container->differenceEngine->setUseColor($useColor);
 }

@@ -8,11 +8,11 @@ use Eloquent\Phony\Event\EventSequence;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 
-class PhpunitAssertionRecorderTest extends TestCase
+class AssertionRecorderTest extends TestCase
 {
     protected function setUp()
     {
-        $this->subject = new PhpunitAssertionRecorder();
+        $this->subject = new AssertionRecorder();
 
         $this->callVerifierFactory = CallVerifierFactory::instance();
         $this->subject->setCallVerifierFactory($this->callVerifierFactory);
@@ -52,7 +52,7 @@ class PhpunitAssertionRecorderTest extends TestCase
     {
         $description = 'description';
 
-        $this->expectException(PhpunitAssertionException::class);
+        $this->expectException(AssertionException::class);
         $this->expectExceptionMessage($description);
         $this->subject->createFailure($description);
     }
