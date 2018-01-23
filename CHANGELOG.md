@@ -1,5 +1,12 @@
 # Phony for PHPUnit changelog
 
+## Next release
+
+- **[BC BREAK]** PHP 7.0 is no longer supported ([#1]).
+- **[NEW]** Support for PHPUnit 7 ([#1]).
+
+[#1]: https://github.com/eloquent/phony-phpunit/issues/1
+
 ## 3.0.0 (2017-09-29)
 
 This release uses *Phony* `2.x` under the hood. Check out the
