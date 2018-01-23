@@ -13,7 +13,7 @@ class ConstraintMatcherTest extends TestCase
         $this->matcher = $this->equalTo('x');
         $this->subject = new ConstraintMatcher($this->matcher);
 
-        $this->description = '<is equal to <string:x>>';
+        $this->description = '<is equal to "x">';
     }
 
     public function testConstructor()

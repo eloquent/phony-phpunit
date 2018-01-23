@@ -14,7 +14,7 @@
     "require": {
         "php": ">=7",
         "eloquent/phony": "^2",
-        "phpunit/phpunit": "^6"
+        "phpunit/phpunit": "^7"
     },
     "require-dev": {
         "errors/exceptions": "^0.2",
@@ -36,7 +36,9 @@
     },
     "config": {
         "platform": {
-            "php": "7.0.99999"
+            "php": "7.1.99999"
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
