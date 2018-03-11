@@ -2,9 +2,14 @@
 
 ## Next release
 
+This release uses *Phony* `3.x` under the hood. Check out the
+[migration guide][migration-3] for *Phony* `3.x`, which also applies to this
+release.
+
 - **[BC BREAK]** PHP 7.0 is no longer supported ([#1]).
 - **[NEW]** Support for PHPUnit 7 ([#1]).
 
+[migration-3]: https://github.com/eloquent/phony/blob/master/MIGRATING.md#migrating-from-2x-to-3x
 [#1]: https://github.com/eloquent/phony-phpunit/issues/1
 
 ## 3.0.0 (2017-09-29)
@@ -27,7 +32,7 @@ release.
 - **[IMPROVED]** Reduced the amount of output generated when mocks, stubs, and
   spies are encountered by `var_dump()` ([#223]).
 
-[migration-2]: https://github.com/eloquent/phony/blob/2.0.0/MIGRATING.md#migrating-from-1x-to-2x
+[migration-2]: https://github.com/eloquent/phony/blob/master/MIGRATING.md#migrating-from-1x-to-2x
 [#215]: https://github.com/eloquent/phony/issues/215
 [#216]: https://github.com/eloquent/phony/issues/216
 [#218]: https://github.com/eloquent/phony/issues/218
