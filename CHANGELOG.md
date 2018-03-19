@@ -1,6 +1,6 @@
 # Phony for PHPUnit changelog
 
-## Next release
+## 4.0.0 (2018-03-20)
 
 This release uses *Phony* `3.x` under the hood. Check out the
 [migration guide][migration-3] for *Phony* `3.x`, which also applies to this
