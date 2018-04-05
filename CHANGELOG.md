@@ -1,5 +1,12 @@
 # Phony for PHPUnit changelog
 
+## 4.0.1 (2018-04-05)
+
+- **[MAINTENANCE]** Updated required PHPUnit version to avoid coverage issues
+  ([#2]).
+
+[#2]: https://github.com/eloquent/phony-phpunit/pull/2
+
 ## 4.0.0 (2018-03-20)
 
 This release uses *Phony* `3.x` under the hood. Check out the
