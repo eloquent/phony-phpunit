@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 class AssertionRecorderTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->subject = new AssertionRecorder();
 

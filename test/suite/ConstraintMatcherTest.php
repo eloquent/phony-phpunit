@@ -8,12 +8,12 @@ use PHPUnit\Framework\TestCase;
 
 class ConstraintMatcherTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->matcher = $this->equalTo('x');
         $this->subject = new ConstraintMatcher($this->matcher);
 
-        $this->description = '<is equal to "x">';
+        $this->description = "<is equal to 'x'>";
     }
 
     public function testConstructor()
