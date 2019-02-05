@@ -32,7 +32,7 @@ class ConstraintMatcher implements Matcher
      */
     public function matches($value): bool
     {
-        return (bool) $this->constraint->evaluate($value, null, true);
+        return (bool) $this->constraint->evaluate($value, '', true);
     }
 
     /**

@@ -12,9 +12,9 @@
         }
     ],
     "require": {
-        "php": ">=7.1",
+        "php": ">=7.2",
         "eloquent/phony": "^3",
-        "phpunit/phpunit": "^7.0.3"
+        "phpunit/phpunit": "^8"
     },
     "require-dev": {
         "errors/exceptions": "^0.2",
@@ -36,12 +36,12 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "5.0.x-dev"
+            "dev-master": "6.0.x-dev"
         }
     },
     "config": {
         "platform": {
-            "php": "7.1.99999"
+            "php": "7.2.99999"
         }
     }
 }

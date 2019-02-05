@@ -8,12 +8,12 @@ use PHPUnit\Framework\TestCase;
 
 class InitializeTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->previousContainer = Globals::$container;
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         Globals::$container = $this->previousContainer;
     }

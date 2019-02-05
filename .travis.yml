@@ -2,8 +2,8 @@ language: php
 
 matrix:
     include:
-        - php: 7.1
         - php: 7.2
+        - php: 7.3
         - php: nightly
     fast_finish: true
     allow_failures:
@@ -18,7 +18,7 @@ after_script: scripts/travis-after
 
 env:
     global:
-        - ELOQUENT_PUBLISH_VERSION=7.2
+        - ELOQUENT_PUBLISH_VERSION=7.3
         - secure: "ZLEpRTWlti18mQqNIHSmLlQ4muizifu4FvumsisG9sd+2IfUgxGyK0QZ1o3rUBglW0jxQjJxPGsORb8/8CxjV3G+0pYJBGUnpc787r6YFKslr2BHQTJPV9pRJKtfDJ3i2c5PI6w1vZbMOnNImHPlSqyYg+vTYkN4KFP6eumH2YmIus2m7P90Wam+SLCvmvRxTv4X+HZ7RzzmG/tr6qT6s/BWiTXj34V8GQuZeWk9EzDBtNe8kMvU/R9ZtMT+umIPOJ4TJAuc4if6YkSNyn7XwzdZkfBWREbf5PbDtefgwpmiWhdBW30x9eO+rC6DPbUsj+ewu8zFSC+pxjTU/XYgrheiKgYS6dsJ/TW2rnDdVgrzeJpNkAZlj2x4k5PTdwqn2by1FDfgYpBQo+prlAZH5J7KDWBE11v/hYraqsTs4L3cYFN03wYhLivWUGeKtlT15y3vzdorqi5ubscLD2+wyKspDvKaeC6fkK1C0LYh/bk9LAsW3IsCpuUk/IfsPmF8PxP/wsi39YG41Fp9nlPMImYZpcXjCcy0Y7Wt4Ip9qGoWiSZBkPrS0UNCI98E4rr+JnVoc4p49FhRev1BdR0AR2umFNUSFVTB7OAk2zJ+VbCPn1bb1OMCl8PMlnwHwSVEBn2dbiPn4oHjVcPuFwWfHckR1pm7IKKYLYu1gsIB2VM="
 
 cache:

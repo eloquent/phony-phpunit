@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class PhonyTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->handle = Phony::mock(TestClassA::class);
         $this->mock = $this->handle->get();

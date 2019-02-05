@@ -28,7 +28,7 @@ use ReflectionObject;
 
 class PhonyTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->matcherFactory = MatcherFactory::instance();
 

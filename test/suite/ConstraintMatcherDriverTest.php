@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class ConstraintMatcherDriverTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->subject = new ConstraintMatcherDriver();
 

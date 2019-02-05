@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Eloquent\Phony\Phpunit;
 
 use Eloquent\Phony\Assertion\Exception\AssertionException as PhonyAssertionException;
-use PHPUnit\Framework\ExpectationFailedException;
+use PHPUnit\Framework\AssertionFailedError;
 
 /**
  * Wraps PHPUnit's expectation failed exception for improved assertion failure
  * output.
  */
-final class AssertionException extends ExpectationFailedException
+final class AssertionException extends AssertionFailedError
 {
     /**
      * Construct a new PHPUnit assertion exception.

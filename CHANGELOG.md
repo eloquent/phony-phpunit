@@ -1,5 +1,13 @@
 # Phony for PHPUnit changelog
 
+## 5.0.0 (2019-02-05)
+
+- **[BC BREAK]** Dropped support for PHPUnit `7.x` ([#3], [#4]).
+- **[NEW]** Added support for PHPUnit `8.x` ([#3], [#4]).
+
+[#3]: https://github.com/eloquent/phony-phpunit/pull/3
+[#4]: https://github.com/eloquent/phony-phpunit/pull/4
+
 ## 4.0.1 (2018-04-05)
 
 - **[MAINTENANCE]** Updated required PHPUnit version to avoid coverage issues
