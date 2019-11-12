@@ -1,29 +1,7 @@
-.PHONY: test
-test: install
-	php --version
-	vendor/bin/phpunit --no-coverage
+# Powered by https://makefiles.dev/
 
-.PHONY: coverage
-coverage: install
-	phpdbg --version
-	phpdbg -qrr vendor/bin/phpunit
+-include .makefiles/Makefile
+-include .makefiles/pkg/php/v1/Makefile
 
-.PHONY: open-coverage
-open-coverage:
-	open coverage/index.html
-
-.PHONY: integration
-integration: install
-	test/integration/run
-
-.PHONY: lint
-lint: install
-	vendor/bin/php-cs-fixer fix
-
-.PHONY: install
-install:
-ifeq (${TRAVIS_PHP_VERSION},nightly)
-	composer install --ignore-platform-reqs
-else
-	composer install
-endif
+.makefiles/%:
+	@curl -sfL https://makefiles.dev/v1 | bash /dev/stdin "$@"

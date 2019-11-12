@@ -9,9 +9,6 @@ matrix:
   allow_failures:
     - php: nightly
 before_install: phpenv config-rm xdebug.ini || true
-install: make install
-script: scripts/travis
-after_script: scripts/travis-after
-env:
-  global:
-    - ELOQUENT_PUBLISH_VERSION=7.3
+install: make vendor
+script: make ci
+after_script: bash <(curl -s https://codecov.io/bash)

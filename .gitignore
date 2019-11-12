@@ -1,6 +1,5 @@
-/coverage/
-/vendor/
-/.php_cs.cache
+/.makefiles/
 /.phpunit.result.cache
+/artifacts/
 /composer.lock
-/README.html
+/vendor/

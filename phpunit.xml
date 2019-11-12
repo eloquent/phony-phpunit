@@ -13,9 +13,7 @@
     </testsuites>
 
     <logging>
-        <log type="coverage-html" target="coverage" />
-        <log type="coverage-clover" target="coverage/coverage.xml" />
-        <log type="coverage-text" target="coverage/coverage.txt" />
+        <log type="coverage-text" target="php://stdout" showOnlySummary="true" />
     </logging>
 
     <filter>
@@ -26,6 +24,5 @@
 
     <php>
         <ini name="error_reporting" value="-1"/>
-        <ini name="memory_limit" value="256M"/>
     </php>
 </phpunit>
