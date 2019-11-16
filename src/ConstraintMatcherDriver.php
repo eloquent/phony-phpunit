@@ -36,7 +36,7 @@ class ConstraintMatcherDriver implements MatcherDriver
     /**
      * Wrap the supplied third party matcher.
      *
-     * @param object $matcher The matcher to wrap.
+     * @param Constraint $matcher The matcher to wrap.
      *
      * @return Matchable The wrapped matcher.
      */

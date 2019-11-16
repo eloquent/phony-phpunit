@@ -25,6 +25,8 @@ class TestClassB extends TestClassA implements TestInterfaceB
 
     public function __construct()
     {
+        parent::__construct();
+
         $this->constructorArguments = func_get_args();
     }
 

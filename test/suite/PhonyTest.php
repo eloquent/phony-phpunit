@@ -24,6 +24,7 @@ use Eloquent\Phony\Spy\SpyVerifier;
 use Eloquent\Phony\Stub\StubVerifier;
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\TestCase;
+use ReflectionClass;
 use ReflectionObject;
 
 class PhonyTest extends TestCase
@@ -56,9 +57,7 @@ class PhonyTest extends TestCase
 
     public function testPartialMock()
     {
-        $types = [TestClassB::class, Countable::class];
-        $arguments = new Arguments(['a', 'b']);
-        $actual = Phony::partialMock($types, $arguments);
+        $actual = Phony::partialMock([TestClassB::class, Countable::class], new Arguments(['a', 'b']));
 
         $this->assertInstanceOf(InstanceHandle::class, $actual);
         $this->assertInstanceOf(Mock::class, $actual->get());
@@ -70,9 +69,7 @@ class PhonyTest extends TestCase
 
     public function testPartialMockWithNullArguments()
     {
-        $types = [TestClassB::class, Countable::class];
-        $arguments = null;
-        $actual = Phony::partialMock($types, $arguments);
+        $actual = Phony::partialMock([TestClassB::class, Countable::class], null);
 
         $this->assertInstanceOf(InstanceHandle::class, $actual);
         $this->assertInstanceOf(Mock::class, $actual->get());
@@ -84,8 +81,7 @@ class PhonyTest extends TestCase
 
     public function testPartialMockWithNoArguments()
     {
-        $types = [TestClassB::class, Countable::class];
-        $actual = Phony::partialMock($types);
+        $actual = Phony::partialMock([TestClassB::class, Countable::class]);
 
         $this->assertInstanceOf(InstanceHandle::class, $actual);
         $this->assertInstanceOf(Mock::class, $actual->get());
@@ -105,9 +101,7 @@ class PhonyTest extends TestCase
 
     public function testPartialMockFunction()
     {
-        $types = [TestClassB::class, Countable::class];
-        $arguments = new Arguments(['a', 'b']);
-        $actual = partialMock($types, $arguments);
+        $actual = partialMock([TestClassB::class, Countable::class], ['a', 'b']);
 
         $this->assertInstanceOf(InstanceHandle::class, $actual);
         $this->assertInstanceOf(Mock::class, $actual->get());
@@ -119,9 +113,7 @@ class PhonyTest extends TestCase
 
     public function testPartialMockFunctionWithNullArguments()
     {
-        $types = [TestClassB::class, Countable::class];
-        $arguments = null;
-        $actual = partialMock($types, $arguments);
+        $actual = partialMock([TestClassB::class, Countable::class], null);
 
         $this->assertInstanceOf(InstanceHandle::class, $actual);
         $this->assertInstanceOf(Mock::class, $actual->get());
@@ -133,8 +125,7 @@ class PhonyTest extends TestCase
 
     public function testPartialMockFunctionWithNoArguments()
     {
-        $types = [TestClassB::class, Countable::class];
-        $actual = partialMock($types);
+        $actual = partialMock([TestClassB::class, Countable::class]);
 
         $this->assertInstanceOf(InstanceHandle::class, $actual);
         $this->assertInstanceOf(Mock::class, $actual->get());
@@ -154,8 +145,7 @@ class PhonyTest extends TestCase
 
     public function testMock()
     {
-        $types = [TestClassB::class, Countable::class];
-        $actual = Phony::mock($types);
+        $actual = Phony::mock([TestClassB::class, Countable::class]);
 
         $this->assertInstanceOf(InstanceHandle::class, $actual);
         $this->assertInstanceOf(Mock::class, $actual->get());
@@ -167,8 +157,7 @@ class PhonyTest extends TestCase
 
     public function testMockFunction()
     {
-        $types = [TestClassB::class, Countable::class];
-        $actual = mock($types);
+        $actual = mock([TestClassB::class, Countable::class]);
 
         $this->assertInstanceOf(InstanceHandle::class, $actual);
         $this->assertInstanceOf(Mock::class, $actual->get());
@@ -466,14 +455,20 @@ class PhonyTest extends TestCase
         $this->assertSame(111, setExportDepth(1));
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetUseColor()
     {
-        $this->assertNull(Phony::setUseColor(false));
+        Phony::setUseColor(false);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetUseColorFunction()
     {
-        $this->assertNull(setUseColor(false));
+        setUseColor(false);
     }
 
     private function assertSpyAssertionRecorder($spy)
@@ -496,7 +491,9 @@ class PhonyTest extends TestCase
     private function assertStubAssertionRecorder($stub)
     {
         $reflector = new ReflectionObject($stub);
-        $property = $reflector->getParentClass()->getProperty('callVerifierFactory');
+        /** @var ReflectionClass */
+        $parentClass = $reflector->getParentClass();
+        $property = $parentClass->getProperty('callVerifierFactory');
         $property->setAccessible(true);
 
         $callVerifierFactory = $property->getValue($stub);
