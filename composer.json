@@ -17,6 +17,7 @@
         "phpunit/phpunit": "^8"
     },
     "require-dev": {
+        "eloquent/code-style": "^1",
         "eloquent/phpstan-phony": "^0.6",
         "errors/exceptions": "^0.2",
         "friendsofphp/php-cs-fixer": "^2",
