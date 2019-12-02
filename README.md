@@ -12,10 +12,12 @@
 ## See also
 
 - Read the [documentation].
+- Read the [PHPUnit documentation].
 - Visit the [main Phony repository].
 
 [documentation]: http://eloquent-software.com/phony/latest/
 [main phony repository]: https://github.com/eloquent/phony
+[phpunit documentation]: https://phpunit.readthedocs.io/
 
 ## License
 
