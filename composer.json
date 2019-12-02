@@ -21,8 +21,8 @@
         "eloquent/phpstan-phony": "^0.6",
         "errors/exceptions": "^0.2",
         "friendsofphp/php-cs-fixer": "^2",
-        "phpstan/phpstan": "^0.11",
         "phpstan/extension-installer": "^1",
+        "phpstan/phpstan": "^0.11",
         "phpstan/phpstan-phpunit": "^0.11"
     },
     "autoload": {
