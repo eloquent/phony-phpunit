@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class FacadeContainerTest extends TestCase
 {
-    public function testContainer()
+    public function testContainer(): void
     {
         $subject = new FacadeContainer();
 

@@ -6,9 +6,9 @@ namespace Eloquent\Phony\Phpunit\Test;
 
 interface TestInterfaceB extends TestInterfaceA
 {
-    public static function testClassBStaticMethodA();
+    public static function testClassBStaticMethodA(): string;
 
-    public function testClassBMethodA();
+    public function testClassBMethodA(): string;
 
-    public function testClassBMethodB(&$first, &$second);
+    public function testClassBMethodB(string &$first, string &$second): string;
 }

@@ -7,10 +7,10 @@ namespace Eloquent\Phony\Phpunit\Test;
 class TestClassB extends TestClassA implements TestInterfaceB
 {
     public static function testClassAStaticMethodB(
-        $first,
-        $second,
-        &$third = null
-    ) {
+        string $first,
+        string $second,
+        string &$third = null
+    ): string {
         $result = implode(func_get_args());
 
         $third = 'third';
@@ -18,7 +18,10 @@ class TestClassB extends TestClassA implements TestInterfaceB
         return $result;
     }
 
-    public static function __callStatic($name, array $arguments)
+    /**
+     * @param array<string> $arguments
+     */
+    public static function __callStatic(string $name, array $arguments): string
     {
         return 'static magic ' . $name . ' ' . implode($arguments);
     }
@@ -30,7 +33,7 @@ class TestClassB extends TestClassA implements TestInterfaceB
         $this->constructorArguments = func_get_args();
     }
 
-    public function testClassAMethodB($first, $second, &$third = null)
+    public function testClassAMethodB(string $first, string $second, string &$third = null): string
     {
         $result = implode(func_get_args());
 
@@ -39,22 +42,22 @@ class TestClassB extends TestClassA implements TestInterfaceB
         return $result;
     }
 
-    public static function testClassBStaticMethodA()
+    public static function testClassBStaticMethodA(): string
     {
         return implode(func_get_args());
     }
 
-    public static function testClassBStaticMethodB($first, $second)
+    public static function testClassBStaticMethodB(string $first, string $second): string
     {
         return implode(func_get_args());
     }
 
-    public function testClassBMethodA()
+    public function testClassBMethodA(): string
     {
         return implode(func_get_args());
     }
 
-    public function testClassBMethodB(&$first, &$second)
+    public function testClassBMethodB(string &$first, string &$second): string
     {
         $result = implode(func_get_args());
 
@@ -64,7 +67,10 @@ class TestClassB extends TestClassA implements TestInterfaceB
         return $result;
     }
 
-    public function __call($name, array $arguments)
+    /**
+     * @param array<string> $arguments
+     */
+    public function __call(string $name, array $arguments): string
     {
         return 'magic ' . $name . ' ' . implode($arguments);
     }

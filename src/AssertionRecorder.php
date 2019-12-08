@@ -62,12 +62,16 @@ class AssertionRecorder implements PhonyAssertionRecorder
      *
      * @param string $description The failure description.
      *
-     * @throws Exception If this recorder throws exceptions.
+     * @return null      If this recorder does not throw exceptions.
+     * @throws Throwable If this recorder throws exceptions.
      */
     public function createFailure(string $description)
     {
         throw new AssertionException($description);
     }
 
+    /**
+     * @var CallVerifierFactory
+     */
     private $callVerifierFactory;
 }

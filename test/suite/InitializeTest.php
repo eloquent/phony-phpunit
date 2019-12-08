@@ -18,7 +18,7 @@ class InitializeTest extends TestCase
         Globals::$container = $this->previousContainer;
     }
 
-    public function testInitialize()
+    public function testInitialize(): void
     {
         require __DIR__ . '/../../src/initialize.php';
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Eloquent\Phony\Phpunit;
 
-use Eloquent\Phony\Matcher\Matchable;
+use Eloquent\Phony\Matcher\Matcher;
 use Eloquent\Phony\Matcher\MatcherDriver;
 use PHPUnit\Framework\Constraint\Constraint;
 
@@ -38,9 +38,9 @@ class ConstraintMatcherDriver implements MatcherDriver
      *
      * @param Constraint $matcher The matcher to wrap.
      *
-     * @return Matchable The wrapped matcher.
+     * @return Matcher The wrapped matcher.
      */
-    public function wrapMatcher($matcher): Matchable
+    public function wrapMatcher(object $matcher): Matcher
     {
         return new ConstraintMatcher($matcher);
     }

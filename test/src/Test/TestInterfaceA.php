@@ -6,11 +6,11 @@ namespace Eloquent\Phony\Phpunit\Test;
 
 interface TestInterfaceA
 {
-    public static function testClassAStaticMethodA();
+    public static function testClassAStaticMethodA(): string;
 
-    public static function testClassAStaticMethodB($first, $second);
+    public static function testClassAStaticMethodB(string $first, string $second): string;
 
-    public function testClassAMethodA();
+    public function testClassAMethodA(): string;
 
-    public function testClassAMethodB($first, $second);
+    public function testClassAMethodB(string $first, string $second): string;
 }

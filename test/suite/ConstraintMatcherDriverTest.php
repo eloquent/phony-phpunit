@@ -16,17 +16,17 @@ class ConstraintMatcherDriverTest extends TestCase
         $this->matcher = $this->equalTo('x');
     }
 
-    public function testIsAvailable()
+    public function testIsAvailable(): void
     {
         $this->assertTrue($this->subject->isAvailable());
     }
 
-    public function testMatcherClassNames()
+    public function testMatcherClassNames(): void
     {
         $this->assertSame([Constraint::class], $this->subject->matcherClassNames());
     }
 
-    public function testWrapMatcher()
+    public function testWrapMatcher(): void
     {
         $this->assertEquals(new ConstraintMatcher($this->matcher), $this->subject->wrapMatcher($this->matcher));
     }

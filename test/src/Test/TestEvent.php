@@ -24,6 +24,13 @@ class TestEvent implements Event
         return $this->time;
     }
 
+    /**
+     * @var int
+     */
     private $sequenceNumber;
+
+    /**
+     * @var float
+     */
     private $time;
 }

@@ -1,7 +1,6 @@
 parameters:
   level: max
   paths: [src, test]
-  inferPrivatePropertyTypeFromConstructor: true
   ignoreErrors:
     # allow @throws with interfaces
     - '/@throws with type .* is not subtype of Throwable/'

@@ -57,5 +57,8 @@ class ConstraintMatcher implements Matcher
         return '<' . $this->constraint->toString() . '>';
     }
 
+    /**
+     * @var Constraint
+     */
     private $constraint;
 }

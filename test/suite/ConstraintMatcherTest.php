@@ -12,17 +12,15 @@ class ConstraintMatcherTest extends TestCase
     {
         $this->matcher = $this->equalTo('x');
         $this->subject = new ConstraintMatcher($this->matcher);
-
-        $this->description = "<is equal to 'x'>";
     }
 
-    public function testConstructor()
+    public function testConstructor(): void
     {
-        $this->assertSame($this->description, $this->subject->describe());
-        $this->assertSame($this->description, strval($this->subject));
+        $this->assertSame("<is equal to 'x'>", $this->subject->describe());
+        $this->assertSame("<is equal to 'x'>", strval($this->subject));
     }
 
-    public function testMatches()
+    public function testMatches(): void
     {
         $this->assertTrue($this->subject->matches('x'));
         $this->assertFalse($this->subject->matches('y'));

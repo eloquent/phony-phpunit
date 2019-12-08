@@ -14,14 +14,14 @@ class PhonyTest extends TestCase
         $this->mock = $this->handle->get();
     }
 
-    public function testShouldRecordPassingMockAssertions()
+    public function testShouldRecordPassingMockAssertions(): void
     {
         $this->mock->testClassAMethodA('aardvark', 'bonobo');
 
         $this->handle->testClassAMethodA->calledWith('aardvark', 'bonobo');
     }
 
-    public function testShouldRecordFailingMockAssertions()
+    public function testShouldRecordFailingMockAssertions(): void
     {
         $this->mock->testClassAMethodA('aardvark', ['bonobo', 'capybara', 'dugong']);
         $this->mock->testClassAMethodA('armadillo', ['bonobo', 'chameleon', 'dormouse']);

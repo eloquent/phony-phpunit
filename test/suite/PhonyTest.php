@@ -37,7 +37,7 @@ class PhonyTest extends TestCase
         $this->eventB = new TestEvent(1, 1.0);
     }
 
-    public function testMockBuilder()
+    public function testMockBuilder(): void
     {
         $actual = Phony::mockBuilder(TestClassA::class);
 
@@ -46,7 +46,7 @@ class PhonyTest extends TestCase
         $this->assertInstanceOf(TestClassA::class, $actual->get());
     }
 
-    public function testMockBuilderFunction()
+    public function testMockBuilderFunction(): void
     {
         $actual = mockBuilder(TestClassA::class);
 
@@ -55,7 +55,7 @@ class PhonyTest extends TestCase
         $this->assertInstanceOf(TestClassA::class, $actual->get());
     }
 
-    public function testPartialMock()
+    public function testPartialMock(): void
     {
         $actual = Phony::partialMock([TestClassB::class, Countable::class], new Arguments(['a', 'b']));
 
@@ -67,7 +67,7 @@ class PhonyTest extends TestCase
         $this->assertSame('ab', $actual->get()->testClassAMethodA('a', 'b'));
     }
 
-    public function testPartialMockWithNullArguments()
+    public function testPartialMockWithNullArguments(): void
     {
         $actual = Phony::partialMock([TestClassB::class, Countable::class], null);
 
@@ -79,7 +79,7 @@ class PhonyTest extends TestCase
         $this->assertSame('ab', $actual->get()->testClassAMethodA('a', 'b'));
     }
 
-    public function testPartialMockWithNoArguments()
+    public function testPartialMockWithNoArguments(): void
     {
         $actual = Phony::partialMock([TestClassB::class, Countable::class]);
 
@@ -91,7 +91,7 @@ class PhonyTest extends TestCase
         $this->assertSame('ab', $actual->get()->testClassAMethodA('a', 'b'));
     }
 
-    public function testPartialMockDefaults()
+    public function testPartialMockDefaults(): void
     {
         $actual = Phony::partialMock();
 
@@ -99,7 +99,7 @@ class PhonyTest extends TestCase
         $this->assertInstanceOf(Mock::class, $actual->get());
     }
 
-    public function testPartialMockFunction()
+    public function testPartialMockFunction(): void
     {
         $actual = partialMock([TestClassB::class, Countable::class], ['a', 'b']);
 
@@ -111,7 +111,7 @@ class PhonyTest extends TestCase
         $this->assertSame('ab', $actual->get()->testClassAMethodA('a', 'b'));
     }
 
-    public function testPartialMockFunctionWithNullArguments()
+    public function testPartialMockFunctionWithNullArguments(): void
     {
         $actual = partialMock([TestClassB::class, Countable::class], null);
 
@@ -123,7 +123,7 @@ class PhonyTest extends TestCase
         $this->assertSame('ab', $actual->get()->testClassAMethodA('a', 'b'));
     }
 
-    public function testPartialMockFunctionWithNoArguments()
+    public function testPartialMockFunctionWithNoArguments(): void
     {
         $actual = partialMock([TestClassB::class, Countable::class]);
 
@@ -135,7 +135,7 @@ class PhonyTest extends TestCase
         $this->assertSame('ab', $actual->get()->testClassAMethodA('a', 'b'));
     }
 
-    public function testPartialMockFunctionDefaults()
+    public function testPartialMockFunctionDefaults(): void
     {
         $actual = partialMock();
 
@@ -143,7 +143,7 @@ class PhonyTest extends TestCase
         $this->assertInstanceOf(Mock::class, $actual->get());
     }
 
-    public function testMock()
+    public function testMock(): void
     {
         $actual = Phony::mock([TestClassB::class, Countable::class]);
 
@@ -152,10 +152,10 @@ class PhonyTest extends TestCase
         $this->assertInstanceOf(TestClassB::class, $actual->get());
         $this->assertInstanceOf(Countable::class, $actual->get());
         $this->assertNull($actual->get()->constructorArguments);
-        $this->assertNull($actual->get()->testClassAMethodA('a', 'b'));
+        $this->assertSame('', $actual->get()->testClassAMethodA('a', 'b'));
     }
 
-    public function testMockFunction()
+    public function testMockFunction(): void
     {
         $actual = mock([TestClassB::class, Countable::class]);
 
@@ -164,10 +164,10 @@ class PhonyTest extends TestCase
         $this->assertInstanceOf(TestClassB::class, $actual->get());
         $this->assertInstanceOf(Countable::class, $actual->get());
         $this->assertNull($actual->get()->constructorArguments);
-        $this->assertNull($actual->get()->testClassAMethodA('a', 'b'));
+        $this->assertSame('', $actual->get()->testClassAMethodA('a', 'b'));
     }
 
-    public function testOnStatic()
+    public function testOnStatic(): void
     {
         $class = Phony::mockBuilder()->build();
         $actual = Phony::onStatic($class);
@@ -176,7 +176,7 @@ class PhonyTest extends TestCase
         $this->assertSame($class, $actual->class());
     }
 
-    public function testOnStaticFunction()
+    public function testOnStaticFunction(): void
     {
         $class = mockBuilder()->build();
         $actual = onStatic($class);
@@ -185,7 +185,7 @@ class PhonyTest extends TestCase
         $this->assertSame($class, $actual->class());
     }
 
-    public function testOn()
+    public function testOn(): void
     {
         $mock = Phony::mockBuilder()->partial();
         $actual = Phony::on($mock);
@@ -194,7 +194,7 @@ class PhonyTest extends TestCase
         $this->assertSame($mock, $actual->get());
     }
 
-    public function testOnFunction()
+    public function testOnFunction(): void
     {
         $mock = mockBuilder()->partial();
         $actual = on($mock);
@@ -203,7 +203,7 @@ class PhonyTest extends TestCase
         $this->assertSame($mock, $actual->get());
     }
 
-    public function testSpy()
+    public function testSpy(): void
     {
         $callback = function () {};
         $actual = Phony::spy($callback);
@@ -213,7 +213,7 @@ class PhonyTest extends TestCase
         $this->assertSpyAssertionRecorder($actual);
     }
 
-    public function testSpyFunction()
+    public function testSpyFunction(): void
     {
         $callback = function () {};
         $actual = spy($callback);
@@ -223,7 +223,7 @@ class PhonyTest extends TestCase
         $this->assertSpyAssertionRecorder($actual);
     }
 
-    public function testSpyGlobal()
+    public function testSpyGlobal(): void
     {
         $actual = Phony::spyGlobal('sprintf', TestNamespace::class);
 
@@ -232,7 +232,7 @@ class PhonyTest extends TestCase
         $this->assertTrue((bool) $actual->calledWith('%s, %s', 'a', 'b'));
     }
 
-    public function testSpyGlobalFunction()
+    public function testSpyGlobalFunction(): void
     {
         $actual = spyGlobal('vsprintf', TestNamespace::class);
 
@@ -241,29 +241,33 @@ class PhonyTest extends TestCase
         $this->assertTrue((bool) $actual->calledWith('%s, %s', ['a', 'b']));
     }
 
-    public function testStub()
+    public function testStub(): void
     {
         $callback = function () { return 'a'; };
         $actual = Phony::stub($callback);
+        /** @var callable */
+        $actualStubCallback = $actual->stub()->callback();
 
         $this->assertInstanceOf(StubVerifier::class, $actual);
-        $this->assertSame('a', call_user_func($actual->stub()->callback()));
+        $this->assertSame('a', call_user_func($actualStubCallback));
         $this->assertSame($actual->stub(), $actual->spy()->callback());
         $this->assertStubAssertionRecorder($actual);
     }
 
-    public function testStubFunction()
+    public function testStubFunction(): void
     {
         $callback = function () { return 'a'; };
         $actual = stub($callback);
+        /** @var callable */
+        $actualStubCallback = $actual->stub()->callback();
 
         $this->assertInstanceOf(StubVerifier::class, $actual);
-        $this->assertSame('a', call_user_func($actual->stub()->callback()));
+        $this->assertSame('a', call_user_func($actualStubCallback));
         $this->assertSame($actual->stub(), $actual->spy()->callback());
         $this->assertStubAssertionRecorder($actual);
     }
 
-    public function testStubGlobal()
+    public function testStubGlobal(): void
     {
         $actual = Phony::stubGlobal('sprintf', TestNamespace::class);
         $actual->with('%s, %s', 'a', 'b')->forwards();
@@ -274,7 +278,7 @@ class PhonyTest extends TestCase
         $this->assertTrue((bool) $actual->calledWith('%s, %s', 'a', 'b'));
     }
 
-    public function testStubGlobalFunction()
+    public function testStubGlobalFunction(): void
     {
         $actual = stubGlobal('vsprintf', TestNamespace::class);
         $actual->with('%s, %s', ['a', 'b'])->forwards();
@@ -285,7 +289,7 @@ class PhonyTest extends TestCase
         $this->assertTrue((bool) $actual->calledWith('%s, %s', ['a', 'b']));
     }
 
-    public function testRestoreGlobalFunctions()
+    public function testRestoreGlobalFunctions(): void
     {
         Phony::stubGlobal('sprintf', TestNamespace::class);
         Phony::stubGlobal('vsprintf', TestNamespace::class);
@@ -299,7 +303,7 @@ class PhonyTest extends TestCase
         $this->assertSame('a, b', TestNamespace\vsprintf('%s, %s', ['a', 'b']));
     }
 
-    public function testRestoreGlobalFunctionsFunction()
+    public function testRestoreGlobalFunctionsFunction(): void
     {
         stubGlobal('sprintf', TestNamespace::class);
         stubGlobal('vsprintf', TestNamespace::class);
@@ -313,7 +317,7 @@ class PhonyTest extends TestCase
         $this->assertSame('a, b', TestNamespace\vsprintf('%s, %s', ['a', 'b']));
     }
 
-    public function testEventOrderMethods()
+    public function testEventOrderMethods(): void
     {
         $this->assertTrue((bool) Phony::checkInOrder($this->eventA, $this->eventB));
         $this->assertFalse((bool) Phony::checkInOrder($this->eventB, $this->eventA));
@@ -334,13 +338,13 @@ class PhonyTest extends TestCase
         $this->assertFalse((bool) Phony::checkAnyOrder());
     }
 
-    public function testInOrderMethodFailure()
+    public function testInOrderMethodFailure(): void
     {
         $this->expectException(AssertionFailedError::class);
         Phony::inOrder($this->eventB, $this->eventA);
     }
 
-    public function testEventOrderFunctions()
+    public function testEventOrderFunctions(): void
     {
         $this->assertTrue((bool) checkInOrder($this->eventA, $this->eventB));
         $this->assertFalse((bool) checkInOrder($this->eventB, $this->eventA));
@@ -361,27 +365,27 @@ class PhonyTest extends TestCase
         $this->assertFalse((bool) checkAnyOrder());
     }
 
-    public function testInOrderFunctionFailure()
+    public function testInOrderFunctionFailure(): void
     {
         $this->expectException(AssertionFailedError::class);
         inOrder($this->eventB, $this->eventA);
     }
 
-    public function testAny()
+    public function testAny(): void
     {
         $actual = Phony::any();
 
         $this->assertInstanceOf(AnyMatcher::class, $actual);
     }
 
-    public function testAnyFunction()
+    public function testAnyFunction(): void
     {
         $actual = any();
 
         $this->assertInstanceOf(AnyMatcher::class, $actual);
     }
 
-    public function testEqualTo()
+    public function testEqualTo(): void
     {
         $actual = Phony::equalTo('a');
 
@@ -389,7 +393,7 @@ class PhonyTest extends TestCase
         $this->assertSame('a', $actual->value());
     }
 
-    public function testEqualToFunction()
+    public function testEqualToFunction(): void
     {
         $actual = equalTo('a');
 
@@ -397,7 +401,7 @@ class PhonyTest extends TestCase
         $this->assertSame('a', $actual->value());
     }
 
-    public function testAnInstanceOf()
+    public function testAnInstanceOf(): void
     {
         $actual = Phony::anInstanceOf(TestClassA::class);
 
@@ -405,7 +409,7 @@ class PhonyTest extends TestCase
         $this->assertSame(TestClassA::class, $actual->type());
     }
 
-    public function testAnInstanceOfFunction()
+    public function testAnInstanceOfFunction(): void
     {
         $actual = anInstanceOf(TestClassA::class);
 
@@ -413,7 +417,7 @@ class PhonyTest extends TestCase
         $this->assertSame(TestClassA::class, $actual->type());
     }
 
-    public function testWildcard()
+    public function testWildcard(): void
     {
         $actual = Phony::wildcard('a', 1, 2);
 
@@ -424,7 +428,7 @@ class PhonyTest extends TestCase
         $this->assertSame(2, $actual->maximumArguments());
     }
 
-    public function testWildcardFunction()
+    public function testWildcardFunction(): void
     {
         $actual = wildcard('a', 1, 2);
 
@@ -435,7 +439,7 @@ class PhonyTest extends TestCase
         $this->assertSame(2, $actual->maximumArguments());
     }
 
-    public function testMatcherIntegration()
+    public function testMatcherIntegration(): void
     {
         $spy = spy();
         $spy('a');
@@ -443,13 +447,13 @@ class PhonyTest extends TestCase
         $this->assertTrue((bool) $spy->checkCalledWith($this->identicalTo('a')));
     }
 
-    public function testSetExportDepth()
+    public function testSetExportDepth(): void
     {
         $this->assertSame(1, Phony::setExportDepth(111));
         $this->assertSame(111, Phony::setExportDepth(1));
     }
 
-    public function testSetExportDepthFunction()
+    public function testSetExportDepthFunction(): void
     {
         $this->assertSame(1, setExportDepth(111));
         $this->assertSame(111, setExportDepth(1));
@@ -458,7 +462,7 @@ class PhonyTest extends TestCase
     /**
      * @doesNotPerformAssertions
      */
-    public function testSetUseColor()
+    public function testSetUseColor(): void
     {
         Phony::setUseColor(false);
     }
@@ -466,12 +470,12 @@ class PhonyTest extends TestCase
     /**
      * @doesNotPerformAssertions
      */
-    public function testSetUseColorFunction()
+    public function testSetUseColorFunction(): void
     {
         setUseColor(false);
     }
 
-    private function assertSpyAssertionRecorder($spy)
+    private function assertSpyAssertionRecorder(SpyVerifier $spy): void
     {
         $reflector = new ReflectionObject($spy);
         $property = $reflector->getProperty('callVerifierFactory');
@@ -488,10 +492,10 @@ class PhonyTest extends TestCase
         $this->assertInstanceOf(AssertionRecorder::class, $assertionRecorder);
     }
 
-    private function assertStubAssertionRecorder($stub)
+    private function assertStubAssertionRecorder(StubVerifier $stub): void
     {
         $reflector = new ReflectionObject($stub);
-        /** @var ReflectionClass */
+        /** @var ReflectionClass<SpyVerifier> */
         $parentClass = $reflector->getParentClass();
         $property = $parentClass->getProperty('callVerifierFactory');
         $property->setAccessible(true);

@@ -20,7 +20,7 @@ class AssertionRecorderTest extends TestCase
         $this->subject->setCallVerifierFactory($this->callVerifierFactory);
     }
 
-    public function testCreateSuccess()
+    public function testCreateSuccess(): void
     {
         $events = [new ReturnedEvent(0, 0.0, null), new ReturnedEvent(1, 1.0, null)];
         $expected = new EventSequence($events, $this->callVerifierFactory);
@@ -32,7 +32,7 @@ class AssertionRecorderTest extends TestCase
         $this->assertSame($beforeCount + 1, $afterCount);
     }
 
-    public function testCreateSuccessDefaults()
+    public function testCreateSuccessDefaults(): void
     {
         $expected = new EventSequence([], $this->callVerifierFactory);
         $beforeCount = Assert::getCount();
@@ -43,14 +43,14 @@ class AssertionRecorderTest extends TestCase
         $this->assertSame($beforeCount + 1, $afterCount);
     }
 
-    public function testCreateSuccessFromEventCollection()
+    public function testCreateSuccessFromEventCollection(): void
     {
         $events = new EventSequence([], $this->callVerifierFactory);
 
         $this->assertEquals($events, $this->subject->createSuccessFromEventCollection($events));
     }
 
-    public function testCreateFailure()
+    public function testCreateFailure(): void
     {
         $description = 'description';
 
