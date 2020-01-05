@@ -1,5 +1,12 @@
 # Phony for PHPUnit changelog
 
+## 6.0.0 (2020-01-06)
+
+This release uses *Phony* `4.x`. There no BC breaking API changes aside from
+stricter type declarations.
+
+- **[BC BREAK]** PHP 7.1 is no longer supported.
+
 ## 5.0.0 (2019-02-05)
 
 - **[BC BREAK]** Dropped support for PHPUnit `7.x` ([#3], [#4]).
