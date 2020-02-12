@@ -12,9 +12,9 @@
         }
     ],
     "require": {
-        "php": ">=7.2",
+        "php": ">=7.3",
         "eloquent/phony": "^4",
-        "phpunit/phpunit": "^8"
+        "phpunit/phpunit": "^9"
     },
     "require-dev": {
         "eloquent/code-style": "^1",
