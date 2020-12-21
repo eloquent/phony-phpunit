@@ -1,6 +1,6 @@
 # Phony for PHPUnit changelog
 
-## Next release
+## 7.1.0 (2020-12-21)
 
 This release uses *Phony* `5.x`. There no BC breaking API changes.
 
