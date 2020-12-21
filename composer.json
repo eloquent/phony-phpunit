@@ -12,8 +12,8 @@
         }
     ],
     "require": {
-        "php": ">=7.3",
-        "eloquent/phony": "^4",
+        "php": "^7.3 || ^8",
+        "eloquent/phony": "^5",
         "phpunit/phpunit": "^9"
     },
     "require-dev": {
@@ -42,7 +42,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "6.1.x-dev"
+            "dev-master": "7.2.x-dev"
         }
     }
 }

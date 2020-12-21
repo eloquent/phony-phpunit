@@ -1,5 +1,9 @@
 # Powered by https://makefiles.dev/
 
+PHP_COMPOSER_INSTALL_ARGS += --ignore-platform-reqs
+
+################################################################################
+
 -include .makefiles/Makefile
 -include .makefiles/pkg/php/v1/Makefile
 

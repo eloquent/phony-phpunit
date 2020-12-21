@@ -274,7 +274,7 @@ class PhonyTest extends TestCase
 
         $this->assertInstanceOf(StubVerifier::class, $actual);
         $this->assertSame('a, b', TestNamespace\sprintf('%s, %s', 'a', 'b'));
-        $this->assertNull(TestNamespace\sprintf('x', 'y'));
+        $this->assertEmpty(TestNamespace\sprintf('x', 'y'));
         $this->assertTrue((bool) $actual->calledWith('%s, %s', 'a', 'b'));
     }
 
@@ -285,7 +285,7 @@ class PhonyTest extends TestCase
 
         $this->assertInstanceOf(StubVerifier::class, $actual);
         $this->assertSame('a, b', TestNamespace\vsprintf('%s, %s', ['a', 'b']));
-        $this->assertNull(TestNamespace\vsprintf('x', 'y'));
+        $this->assertEmpty(TestNamespace\vsprintf('x', ['y']));
         $this->assertTrue((bool) $actual->calledWith('%s, %s', ['a', 'b']));
     }
 
@@ -294,8 +294,8 @@ class PhonyTest extends TestCase
         Phony::stubGlobal('sprintf', TestNamespace::class);
         Phony::stubGlobal('vsprintf', TestNamespace::class);
 
-        $this->assertNull(TestNamespace\sprintf('%s, %s', 'a', 'b'));
-        $this->assertNull(TestNamespace\vsprintf('%s, %s', ['a', 'b']));
+        $this->assertEmpty(TestNamespace\sprintf('%s, %s', 'a', 'b'));
+        $this->assertEmpty(TestNamespace\vsprintf('%s, %s', ['a', 'b']));
 
         Phony::restoreGlobalFunctions();
 
@@ -308,8 +308,8 @@ class PhonyTest extends TestCase
         stubGlobal('sprintf', TestNamespace::class);
         stubGlobal('vsprintf', TestNamespace::class);
 
-        $this->assertNull(TestNamespace\sprintf('%s, %s', 'a', 'b'));
-        $this->assertNull(TestNamespace\vsprintf('%s, %s', ['a', 'b']));
+        $this->assertEmpty(TestNamespace\sprintf('%s, %s', 'a', 'b'));
+        $this->assertEmpty(TestNamespace\vsprintf('%s, %s', ['a', 'b']));
 
         restoreGlobalFunctions();
 
