@@ -16,7 +16,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
     - name: Set up PHP
-      uses: shivammathur/setup-php@master
+      uses: shivammathur/setup-php@v2
       with:
         php-version: ${{ matrix.php }}
         extensions: mbstring
@@ -30,7 +30,7 @@ jobs:
       run: make ci
     - name: Make
       if: ${{ startsWith(matrix.php, '8.') }}
-      run: make test
+      run: make ci-phpunit
     - name: Upload coverage reports
       if: success()
       run: |
